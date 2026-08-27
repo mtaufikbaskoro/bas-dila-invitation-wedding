@@ -1,7 +1,41 @@
 import Image from "next/image";
-import { Church, Clock3, MapPin, PartyPopper } from "lucide-react";
+import { Mosque, Clock3, MapPin, PartyPopper } from "lucide-react";
 import { PageFrame } from "@/components/page-frame";
 
-const events = [{ title: "Akad Nikah", subtitle: "Upacara Suci", icon: Church, accent: "bg-primary-container", time: "08:00 WIB - 10:00 WIB", place: "Masjid Raya Kebayoran", address: "Jl. Pangeran Antasari No. 10, Jakarta Selatan" }, { title: "Resepsi", subtitle: "Perayaan & Ramah Tamah", icon: PartyPopper, accent: "bg-secondary-container", time: "11:00 WIB - Selesai", place: "The Glasshouse, Dharmawangsa", address: "Jl. Brawijaya Raya No. 26, Jakarta Selatan" }];
+const events = [{ title: "Akad Nikah", subtitle: "Upacara Suci", icon: Mosque, accent: "bg-primary-container", time: "08:00 WIB - 10:00 WIB", place: "Masjid Raya Kebayoran", address: "Jl. Pangeran Antasari No. 10, Jakarta Selatan" }, { title: "Resepsi", subtitle: "Perayaan & Ramah Tamah", icon: PartyPopper, accent: "bg-secondary-container", time: "11:00 WIB - Selesai", place: "The Glasshouse, Dharmawangsa", address: "Jl. Brawijaya Raya No. 26, Jakarta Selatan" }];
 
-export default function AcaraPage() { return <PageFrame><main className="mx-auto max-w-4xl px-6 py-12 sm:px-10"><section className="flex flex-col items-center text-center"><div className="relative h-72 w-full max-w-sm overflow-hidden rounded-t-[100px] rounded-b-2xl shadow-lg shadow-primary/15"><Image src="/images/wedding/hero.svg" alt="Ilustrasi suasana acara pernikahan" fill className="object-cover" /></div><h1 className="-mt-5 z-10 rounded-full border border-outline-variant bg-surface-white px-10 py-3 font-serif text-2xl font-semibold text-primary shadow-md">Detail Acara</h1></section><section className="mt-20 grid gap-6 md:grid-cols-2">{events.map(({ title, subtitle, icon: Icon, accent, time, place, address }) => <article key={title} className="relative overflow-hidden rounded-2xl border border-outline-variant/60 bg-surface-white p-6 shadow-md shadow-primary/10"><Icon aria-hidden="true" className="absolute -right-2 top-5 size-28 text-primary opacity-10" /><div className="relative flex items-center gap-3"><div className={`flex size-12 items-center justify-center rounded-full ${accent} text-primary`}><Icon size={22} /></div><div><h2 className="font-serif text-2xl font-semibold">{title}</h2><p className="text-xs text-muted">{subtitle}</p></div></div><div className="relative mt-6 space-y-4 text-sm"><p className="flex gap-3"><Clock3 className="shrink-0 text-primary" size={20} /><span>Sabtu, 24 Agustus 2024<br /><span className="text-muted">{time}</span></span></p><p className="flex gap-3"><MapPin className="shrink-0 text-primary" size={20} /><span className="font-semibold">{place}<br /><span className="font-normal text-muted">{address}</span></span></p></div><a href="https://maps.google.com" target="_blank" rel="noreferrer" className="mt-6 block rounded-full border border-primary py-3 text-center text-sm font-semibold text-primary transition hover:bg-primary/5">Lihat Peta</a></article>)}</section><section className="mt-20 text-center"><h2 className="font-serif text-2xl font-semibold text-primary">Lokasi Utama</h2><div className="relative mt-6 h-64 overflow-hidden rounded-2xl"><Image src="/images/wedding/map.svg" alt="Peta lokasi utama di Kebayoran Baru" fill className="object-cover" /></div><p className="mx-auto mt-6 max-w-lg leading-relaxed text-muted">Tersedia area parkir yang luas di kedua lokasi. Kami menyarankan untuk datang 30 menit sebelum acara dimulai.</p></section></main></PageFrame>; }
+export default function AcaraPage() { 
+    return <PageFrame>
+        <main className="mx-auto max-w-4xl px-6 py-12 sm:px-10">
+            <section className="flex flex-col items-center text-center">
+                <div className="relative h-72 w-full max-w-sm overflow-hidden rounded-t-[100px] rounded-b-2xl shadow-lg shadow-primary/15">
+                    <Image src="/images/wedding/hero.jpg" alt="Ilustrasi suasana acara pernikahan" fill className="object-cover" />
+                </div>
+                <h1 className="-mt-5 z-10 rounded-full border border-outline-variant bg-surface-white px-10 py-3 font-serif text-2xl font-semibold text-primary shadow-md">Detail Acara</h1>
+            </section>
+            <section className="mt-20 grid gap-6 md:grid-cols-2">{events.map(({ title, subtitle, icon: Icon, accent, time, place, address }) => 
+                <article key={title} className="relative overflow-hidden rounded-2xl border border-outline-variant/60 bg-surface-white p-6 shadow-md shadow-primary/10">
+                    <Icon aria-hidden="true" className="absolute -right-2 top-5 size-28 text-primary opacity-10" />
+                    <div className="relative flex items-center gap-3">
+                        <div className={`flex size-12 items-center justify-center rounded-full ${accent} text-primary`}>
+                            <Icon size={22} />
+                        </div>
+                        <div>
+                            <h2 className="font-serif text-2xl font-semibold">{title}</h2>
+                            <p className="text-xs text-muted">{subtitle}</p>
+                        </div>
+                    </div>
+                    <div className="relative mt-6 space-y-4 text-sm">
+                        <p className="flex gap-3"><Clock3 className="shrink-0 text-primary" size={20} /><span>Sabtu, 24 Agustus 2024<br /><span className="text-muted">{time}</span></span></p>
+                        <p className="flex gap-3"><MapPin className="shrink-0 text-primary" size={20} /><span className="font-semibold">{place}<br /><span className="font-normal text-muted">{address}</span></span></p>
+                    </div><a href="https://maps.google.com" target="_blank" rel="noreferrer" className="mt-6 block rounded-full border border-primary py-3 text-center text-sm font-semibold text-primary transition hover:bg-primary/5">Lihat Peta</a>
+                </article>)}
+            </section>
+            <section className="mt-20 text-center">
+                <h2 className="font-serif text-2xl font-semibold text-primary">Lokasi Utama</h2>
+                <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
+                    <Image src="/images/wedding/map.svg" alt="Peta lokasi utama di Kebayoran Baru" fill className="object-cover" /></div>
+                    <p className="mx-auto mt-6 max-w-lg leading-relaxed text-muted">Tersedia area parkir yang luas di kedua lokasi. Kami menyarankan untuk datang 30 menit sebelum acara dimulai.</p>
+            </section>
+        </main>
+    </PageFrame>; }

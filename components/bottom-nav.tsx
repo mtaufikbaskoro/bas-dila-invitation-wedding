@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Images, Mail, NotebookTabs } from "lucide-react";
+import { CalendarDays, HeartHandshake, Images, Mail, NotebookTabs } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { navItems } from "@/lib/wedding";
 
-const icons = { story: NotebookTabs, event: CalendarDays, gallery: Images, mail: Mail };
+const icons = { couple: HeartHandshake, story: NotebookTabs, event: CalendarDays, gallery: Images, mail: Mail };
 
 export function BottomNav() {
   const pathname = usePathname();
