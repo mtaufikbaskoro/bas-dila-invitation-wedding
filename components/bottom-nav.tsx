@@ -14,7 +14,7 @@ export function BottomNav() {
     <nav aria-label="Navigasi utama" className="fixed bottom-4 left-1/2 z-50 flex w-[calc(100%-32px)] max-w-md -translate-x-1/2 items-center justify-between rounded-full border border-outline-variant/40 bg-surface/90 px-5 py-3 shadow-xl shadow-primary/10 backdrop-blur-lg sm:bottom-6 sm:w-[calc(100%-48px)]">
       {navItems.map((item) => {
         const Icon = icons[item.icon];
-        const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        const active = pathname.startsWith(item.href);
 
         return (
           <Link

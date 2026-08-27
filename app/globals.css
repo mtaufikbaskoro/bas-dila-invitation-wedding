@@ -84,10 +84,25 @@ textarea {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes gallery-slide {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 700ms ease-out both;
 }
 
 .animate-zoom-in {
   animation: zoom-in 900ms ease-out both;
+}
+
+.animate-gallery-slide {
+  animation: gallery-slide 500ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gallery-slide {
+    animation: none;
+  }
 }
