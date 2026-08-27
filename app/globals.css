@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff8f5;
+  --foreground: #221a13;
+  --surface: #fff8f5;
+  --surface-low: #fff1e7;
+  --surface-high: #f5e5da;
+  --surface-white: #ffffff;
+  --primary: #a0376a;
+  --primary-container: #ff84ba;
+  --primary-soft: #ffd9e5;
+  --secondary: #725c07;
+  --secondary-container: #fddd80;
+  --tertiary: #346096;
+  --outline: #877178;
+  --outline-variant: #dac0c8;
+  --muted: #544248;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-low: var(--surface-low);
+  --color-surface-high: var(--surface-high);
+  --color-surface-white: var(--surface-white);
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-jakarta);
+  --font-serif: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
+  min-width: 320px;
+}
+
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.pattern-bg {
+  background-image: radial-gradient(circle at 2px 2px, rgba(160, 55, 106, 0.1) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.arch-image {
+  border-radius: 999px 999px 1rem 1rem;
+}
+
+.ambient-shadow {
+  box-shadow: 0 16px 40px -18px rgba(160, 55, 106, 0.35);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 700ms ease-out both;
+}
+
+.animate-zoom-in {
+  animation: zoom-in 900ms ease-out both;
 }

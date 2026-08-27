@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a Next.js 16 App Router wedding invitation based on the Ethereal Celebration Stitch design.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -14,11 +14,23 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The invitation is split into `/`, `/cerita`, `/acara`, `/galeri`, and `/rsvp`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local wedding images
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Replace the placeholder SVG files in `public/images/wedding/` with your own images while keeping the same filenames:
+
+- `hero.svg`: home and event header
+- `rsvp.svg`: RSVP header and gallery item
+- `story-coffee.svg`, `story-mountain.svg`, `story-proposal.svg`: story timeline
+- `gallery-portrait.svg`, `gallery-detail.svg`: gallery items
+- `map.svg`: event location map
+
+The components use these paths directly, so replacing a file does not require code changes. JPG, PNG, or WebP files are also supported when the corresponding path in the component is updated.
+
+The RSVP form currently demonstrates local validation and success state only. Its submit boundary can later be connected to a server action or API.
+
+The project uses `next/font` to load Playfair Display and Plus Jakarta Sans.
 
 ## Learn More
 

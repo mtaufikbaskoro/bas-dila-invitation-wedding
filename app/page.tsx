@@ -1,69 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight, Heart, MapPin } from "lucide-react";
+import { PageFrame } from "@/components/page-frame";
+import { weddingImages } from "@/lib/wedding";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <PageFrame pattern showBottomNav={false}>
+      <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center px-6 py-10 sm:px-10">
+        <section className="flex w-full max-w-2xl flex-col items-center text-center">
+          <p className="animate-fade-in-up mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Pernikahan Dari</p>
+          <h1 className="animate-fade-in-up mb-8 font-serif text-5xl font-bold leading-[1.05] text-primary [animation-delay:120ms] sm:text-7xl">Eleanor <span className="font-light italic text-secondary">&amp;</span> James</h1>
+          <div className="animate-zoom-in relative mb-8 h-[380px] w-[280px] [animation-delay:240ms] sm:h-[460px] sm:w-[340px]"><div className="absolute inset-0 translate-x-3 translate-y-3 rounded-t-full rounded-b-2xl bg-primary-container/40 blur-sm" /><Image src={weddingImages.hero} alt="Ilustrasi foto Eleanor dan James" fill priority className="arch-image border-4 border-surface object-cover shadow-xl shadow-primary/20" /></div>
+          <div className="animate-fade-in-up relative w-full max-w-sm rounded-2xl border border-outline-variant/50 bg-surface-white p-6 shadow-lg shadow-primary/10 [animation-delay:420ms]"><Heart aria-hidden="true" className="absolute -left-3 -top-3 fill-primary-soft text-primary-soft" size={30} /><p className="font-serif text-2xl font-semibold text-foreground">25 Oktober 2024</p><div className="mt-3 flex items-center justify-center gap-2 text-sm uppercase tracking-wider text-muted"><MapPin size={15} /><span>Jakarta, Indonesia</span></div><Link href="/cerita" className="mt-6 flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-md shadow-primary/20 transition hover:bg-[#79164b] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Buka Undangan <ChevronRight size={17} /></Link></div>
+        </section>
       </main>
-    </div>
+    </PageFrame>
   );
 }
