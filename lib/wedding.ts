@@ -33,7 +33,7 @@ export const wedding = {
   },
   images: {
     hero: "/images/wedding/hero.jpg",
-    rsvp: "/images/wedding/rsvp.svg",
+    rsvp: "/gallery/9.jpg",
     map: "/images/wedding/map.svg",
     story: [
       { date: "Desember 2018", title: "Pertemuan Pertama", text: "Di sebuah kedai kopi kecil di sudut Jakarta, hujan deras memaksa kami berbagi meja. Tidak ada yang spesial pada awalnya, hanya sapaan canggung dan buku yang tertukar.", image: "/images/wedding/story-coffee.svg", shape: "rounded-2xl" },

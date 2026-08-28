@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Clock3, MapPin, Mosque, PartyPopper } from "lucide-react";
+import { FloralDecoration } from "@/components/floral-decoration";
 import { PageFrame } from "@/components/page-frame";
 import { wedding } from "@/lib/wedding";
 
@@ -11,14 +12,17 @@ const eventPresentation = [
 export default function AcaraPage() {
     return (
         <PageFrame>
-            <main className="mx-auto max-w-4xl px-6 py-12 sm:px-10">
-                <section className="flex flex-col items-center text-center">
-                    <div className="relative h-72 w-full max-w-sm overflow-hidden rounded-t-[100px] rounded-b-2xl shadow-lg shadow-primary/15">
-                        <Image src={wedding.images.hero} alt={wedding.eventPage.heroAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 384px" className="object-cover" />
+            <main className="relative mx-auto max-w-4xl overflow-hidden px-6 py-12 sm:px-10">
+                <section className="relative z-10 flex flex-col items-center text-center">
+                    <div className="relative h-72 w-full max-w-sm isolate rounded-t-[100px] rounded-b-2xl">
+                        <FloralDecoration asset="orange-sprig" className="-left-8 -top-4 h-28 w-32 opacity-75 sm:-left-12 sm:-top-6 sm:h-36 sm:w-40" />
+                        <div className="relative z-10 h-full overflow-hidden rounded-t-[100px] rounded-b-2xl shadow-lg shadow-primary/15">
+                            <Image src={wedding.images.hero} alt={wedding.eventPage.heroAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 384px" className="object-cover" />
+                        </div>
                     </div>
                     <h1 className="-mt-5 z-10 rounded-full border border-outline-variant bg-surface-white px-10 py-3 font-serif text-2xl font-semibold text-primary shadow-md">{wedding.eventPage.title}</h1>
                 </section>
-                <section className="mt-20 grid gap-6 md:grid-cols-2">
+                <section className="relative z-10 mt-20 grid gap-6 md:grid-cols-2">
                     {wedding.events.map((event, index) => {
                         const { icon: Icon, accent } = eventPresentation[index];
 
@@ -43,7 +47,8 @@ export default function AcaraPage() {
                         );
                     })}
                 </section>
-                <section className="mt-20 text-center">
+                <section className="relative z-10 mt-20 text-center">
+                    <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
                     <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
                     <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
                         <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />
