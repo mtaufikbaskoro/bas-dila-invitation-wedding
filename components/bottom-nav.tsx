@@ -21,7 +21,7 @@ export function BottomNav() {
             key={item.href}
             href={item.href}
             aria-current={active ? "page" : undefined}
-            className={`flex min-w-10 flex-col items-center gap-1 text-[10px] font-medium transition-colors ${active ? "text-primary" : "text-muted hover:text-primary"}`}
+            className={`motion-press flex min-w-10 flex-col items-center gap-1 rounded-xl px-1 py-1 text-[10px] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${active ? "text-primary" : "text-muted hover:text-primary"}`}
           >
             <Icon aria-hidden="true" size={21} strokeWidth={active ? 2.4 : 1.8} />
             <span>{item.label}</span>

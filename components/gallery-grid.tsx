@@ -64,7 +64,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 							className="block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
 						>
 							<figure
-								className={`${index % 2 ? "rotate-2" : "-rotate-1"} rounded-sm border-8 border-surface-white bg-surface-white shadow-lg shadow-primary/10 transition hover:-translate-y-2 hover:rotate-0`}
+								className={`${index % 2 ? "rotate-2" : "-rotate-1"} rounded-sm border-8 border-surface-white bg-surface-white shadow-lg shadow-primary/10 transition duration-500 hover:-translate-y-3 hover:rotate-0 hover:scale-[1.025] hover:shadow-xl`}
 							>
 								<div className={`relative ${index === 0 ? "aspect-[4/5]" : index === 3 ? "aspect-video" : "aspect-square"}`}>
 									<Image
@@ -86,7 +86,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 					onClick={showMoreImages}
 					aria-controls="gallery-grid"
 					aria-expanded={visibleCount > initialVisibleCount}
-					className="mx-auto mt-16 flex items-center gap-2 rounded-full border border-outline px-8 py-3 text-sm font-semibold text-muted transition hover:border-primary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+					className="motion-press mx-auto mt-16 flex items-center gap-2 rounded-full border border-outline px-8 py-3 text-sm font-semibold text-muted transition hover:border-primary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
 				>
 					{wedding.galleryPage.moreLabel} <ChevronDown size={16} aria-hidden="true" />
 				</button>
@@ -107,7 +107,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 					>
 						<X size={22} aria-hidden="true" />
 					</button>
-					<div className="relative h-[85vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+					<div className="animate-modal-in relative h-[85vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
 						<Image
 							src={selectedImage.url}
 							alt={`${wedding.galleryPage.imageAlt} dalam ukuran penuh`}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Clock3, MapPin, Mosque, PartyPopper } from "lucide-react";
 import { FloralDecoration } from "@/components/floral-decoration";
 import { PageFrame } from "@/components/page-frame";
+import { Reveal } from "@/components/reveal";
 import { wedding } from "@/lib/wedding";
 
 const eventPresentation = [
@@ -27,7 +28,8 @@ export default function AcaraPage() {
                         const { icon: Icon, accent } = eventPresentation[index];
 
                         return (
-                            <article key={event.title} className="relative overflow-hidden rounded-2xl border border-outline-variant/60 bg-surface-white p-6 shadow-md shadow-primary/10">
+                                                        <Reveal key={event.title} delay={index * 100}>
+                                                            <article className="relative overflow-hidden rounded-2xl border border-outline-variant/60 bg-surface-white p-6 shadow-md shadow-primary/10">
                                 <Icon aria-hidden="true" className="absolute -right-2 top-5 size-28 text-primary opacity-10" />
                                 <div className="relative flex items-center gap-3">
                                     <div className={`flex size-12 items-center justify-center rounded-full ${accent} text-primary`}>
@@ -42,19 +44,22 @@ export default function AcaraPage() {
                                     <p className="flex gap-3"><Clock3 className="shrink-0 text-primary" size={20} /><span>{wedding.date.weekday}, {wedding.date.display}<br /><span className="text-muted">{event.time}</span></span></p>
                                     <p className="flex gap-3"><MapPin className="shrink-0 text-primary" size={20} /><span className="font-semibold">{event.place}<br /><span className="font-normal text-muted">{event.address}</span></span></p>
                                 </div>
-                                <a href={event.mapUrl} target="_blank" rel="noreferrer" className="mt-6 block rounded-full border border-primary py-3 text-center text-sm font-semibold text-primary transition hover:bg-primary/5">{wedding.eventPage.mapLabel}</a>
-                            </article>
+                                                                <a href={event.mapUrl} target="_blank" rel="noreferrer" className="motion-press mt-6 block rounded-full border border-primary py-3 text-center text-sm font-semibold text-primary transition hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">{wedding.eventPage.mapLabel}</a>
+                                                            </article>
+                                                        </Reveal>
                         );
                     })}
                 </section>
-                <section className="relative z-10 mt-20 text-center">
+                                <Reveal>
+                                    <section className="relative z-10 mt-20 text-center">
                     <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
                     <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
                     <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
                         <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />
                     </div>
                     <p className="mx-auto mt-6 max-w-lg leading-relaxed text-muted">{wedding.eventPage.parkingNote}</p>
-                </section>
+                                    </section>
+                                </Reveal>
             </main>
         </PageFrame>
     );

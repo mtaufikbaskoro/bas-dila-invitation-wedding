@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Heart } from "lucide-react";
-import { FloralDecoration } from "@/components/floral-decoration";
 import { PageFrame } from "@/components/page-frame";
+import { Reveal } from "@/components/reveal";
 import { wedding } from "@/lib/wedding";
 
 function Profile({
@@ -53,13 +53,17 @@ export default function MempelaiPage() {
         </header>
 
         <section aria-label={wedding.couplePage.profilesLabel} className="relative z-10 mx-auto mt-20 max-w-5xl space-y-20 sm:mt-28 sm:space-y-28">
-          <Profile profile={wedding.couple.profiles[0]} reverse={false} eager />
+          <Reveal>
+            <Profile profile={wedding.couple.profiles[0]} reverse={false} eager />
+          </Reveal>
           <div className="flex items-center justify-center gap-5" aria-hidden="true">
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
-            <Heart className="fill-primary text-primary" size={20} />
+            <Heart className="motion-sway fill-primary text-primary" size={20} />
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
           </div>
-          <Profile profile={wedding.couple.profiles[1]} reverse />
+          <Reveal delay={120}>
+            <Profile profile={wedding.couple.profiles[1]} reverse />
+          </Reveal>
         </section>
       </main>
     </PageFrame>

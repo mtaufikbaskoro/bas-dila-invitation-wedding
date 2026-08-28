@@ -33,18 +33,21 @@ export function FloralDecoration({
   asset,
   className = "",
   priority = false,
+  loading = "lazy",
 }: {
   asset: FloralAsset;
   className?: string;
   priority?: boolean;
+  loading?: "eager" | "lazy";
 }) {
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute z-20 select-none ${className}`}>
+    <div aria-hidden="true" className={`pointer-events-none absolute z-20 select-none motion-sway ${className}`}>
       <Image
         src={assetPaths[asset]}
         alt=""
         fill
         priority={priority}
+        loading={priority ? "eager" : loading}
         sizes="(max-width: 640px) 32vw, 280px"
         className="object-contain"
       />
