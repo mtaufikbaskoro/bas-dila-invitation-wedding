@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronDown, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { wedding } from "@/lib/wedding";
 
 type GalleryImage = {
 	fileName: string;
@@ -45,7 +46,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 	}
 
 	if (gallery.length === 0) {
-		return <p className="text-center text-muted">Belum ada foto di galeri.</p>;
+		return <p className="text-center text-muted">{wedding.galleryPage.emptyText}</p>;
 	}
 
 	return (
@@ -59,7 +60,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 						<button
 							type="button"
 							onClick={() => setSelectedImage({ fileName, url })}
-							aria-label={`Perbesar foto momen pernikahan ${index + 1}`}
+							aria-label={`${wedding.galleryPage.enlargeLabel} ${wedding.galleryPage.imageAlt.toLowerCase()} ${index + 1}`}
 							className="block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
 						>
 							<figure
@@ -68,7 +69,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 								<div className={`relative ${index === 0 ? "aspect-[4/5]" : index === 3 ? "aspect-video" : "aspect-square"}`}>
 									<Image
 										src={url}
-										alt={`Momen pernikahan ${index + 1}`}
+										alt={`${wedding.galleryPage.imageAlt} ${index + 1}`}
 										fill
 										sizes={index === 0 || index === 3 ? "(max-width: 640px) calc(100vw - 48px), 816px" : "(max-width: 640px) calc((100vw - 53px) / 2), 392px"}
 										className="object-cover"
@@ -87,7 +88,7 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 					aria-expanded={visibleCount > initialVisibleCount}
 					className="mx-auto mt-16 flex items-center gap-2 rounded-full border border-outline px-8 py-3 text-sm font-semibold text-muted transition hover:border-primary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
 				>
-					Lebih Banyak <ChevronDown size={16} aria-hidden="true" />
+					{wedding.galleryPage.moreLabel} <ChevronDown size={16} aria-hidden="true" />
 				</button>
 			)}
 			{selectedImage && (
@@ -95,21 +96,21 @@ export function GalleryGrid({ gallery }: { gallery: GalleryImage[] }) {
 					className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/90 p-4 sm:p-8"
 					role="dialog"
 					aria-modal="true"
-					aria-label="Foto dalam ukuran penuh"
+					aria-label={wedding.galleryPage.dialogLabel}
 					onClick={() => setSelectedImage(null)}
 				>
 					<button
 						type="button"
 						className="absolute right-4 top-4 z-10 rounded-full bg-surface-white/90 p-3 text-foreground shadow-lg transition hover:bg-surface-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:right-8 sm:top-8"
 						onClick={() => setSelectedImage(null)}
-						aria-label="Tutup foto"
+						aria-label={wedding.galleryPage.closeLabel}
 					>
 						<X size={22} aria-hidden="true" />
 					</button>
 					<div className="relative h-[85vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
 						<Image
 							src={selectedImage.url}
-							alt="Momen pernikahan dalam ukuran penuh"
+							alt={`${wedding.galleryPage.imageAlt} dalam ukuran penuh`}
 							fill
 											sizes="100vw"
 							className="object-contain"

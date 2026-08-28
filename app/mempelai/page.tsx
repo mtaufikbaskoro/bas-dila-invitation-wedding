@@ -1,14 +1,16 @@
 import Image from "next/image";
 import { Heart } from "lucide-react";
 import { PageFrame } from "@/components/page-frame";
-import { coupleProfiles } from "@/lib/wedding";
+import { wedding } from "@/lib/wedding";
 
 function Profile({
   profile,
   reverse,
+  eager = false,
 }: {
-  profile: (typeof coupleProfiles)[number];
+  profile: (typeof wedding.couple.profiles)[number];
   reverse: boolean;
+  eager?: boolean;
 }) {
   return (
     <article className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2 md:[&>div:last-child]:text-right" : ""}`}>
@@ -19,6 +21,7 @@ function Profile({
             src={profile.image}
             alt={`Foto ${profile.role.toLowerCase()} ${profile.name}`}
             fill
+            loading={eager ? "eager" : "lazy"}
             sizes="(min-width: 768px) 340px, 80vw"
             className="object-cover"
             style={{ objectPosition: profile.imagePosition }}
@@ -42,20 +45,20 @@ export default function MempelaiPage() {
     <PageFrame>
       <main className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20">
         <header className="mx-auto max-w-2xl text-center">
-          <h1 className="font-serif text-5xl font-bold leading-tight text-primary sm:text-6xl">Sang Mempelai</h1>
+          <h1 className="font-serif text-5xl font-bold leading-tight text-primary sm:text-6xl">{wedding.couplePage.title}</h1>
           <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-            Dengan penuh rasa syukur dan memohon ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.
+            {wedding.couplePage.intro}
           </p>
         </header>
 
-        <section aria-label="Profil mempelai" className="mx-auto mt-20 max-w-5xl space-y-20 sm:mt-28 sm:space-y-28">
-          <Profile profile={coupleProfiles[0]} reverse={false} />
+        <section aria-label={wedding.couplePage.profilesLabel} className="mx-auto mt-20 max-w-5xl space-y-20 sm:mt-28 sm:space-y-28">
+          <Profile profile={wedding.couple.profiles[0]} reverse={false} eager />
           <div className="flex items-center justify-center gap-5" aria-hidden="true">
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
             <Heart className="fill-primary text-primary" size={20} />
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
           </div>
-          <Profile profile={coupleProfiles[1]} reverse />
+          <Profile profile={wedding.couple.profiles[1]} reverse />
         </section>
       </main>
     </PageFrame>

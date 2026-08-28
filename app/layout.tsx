@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { wedding } from "@/lib/wedding";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -13,8 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Eleanor & James | Undangan Pernikahan",
-  description: "Dengan penuh sukacita, kami mengundang Anda untuk merayakan hari bahagia kami.",
+  title: wedding.metadata.title,
+  description: wedding.metadata.description,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
