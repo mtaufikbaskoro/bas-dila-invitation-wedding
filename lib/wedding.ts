@@ -117,9 +117,9 @@ export const weddingImages = wedding.images;
 export const coupleProfiles = wedding.couple.profiles;
 
 export const navItems = [
-  { href: "/mempelai", label: "Mempelai", icon: "couple" },
-  { href: "/cerita", label: "Cerita", icon: "story" },
-  { href: "/acara", label: "Acara", icon: "event" },
-  { href: "/galeri", label: "Galeri", icon: "gallery" },
-  { href: "/rsvp", label: "RSVP", icon: "mail" },
+  { href: "#mempelai", label: "Mempelai", icon: "couple" },
+  { href: "#cerita", label: "Cerita", icon: "story" },
+  { href: "#acara", label: "Acara", icon: "event" },
+  { href: "#galeri", label: "Galeri", icon: "gallery" },
+  { href: "#rsvp", label: "RSVP", icon: "mail" },
 ] as const;
