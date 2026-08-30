@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { MusicProvider } from "@/components/background-music";
 import { wedding } from "@/lib/wedding";
 import "./globals.css";
 
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="id"
       className={`${jakarta.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <MusicProvider>{children}</MusicProvider>
+      </body>
     </html>
   );
 }
