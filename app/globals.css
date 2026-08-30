@@ -84,10 +84,121 @@ textarea {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes gallery-slide {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes hero-image-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.86) rotate(-4deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes hero-card-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1) rotate(-8deg); }
+  15% { transform: scale(1.18) rotate(0); }
+  30% { transform: scale(1) rotate(-8deg); }
+  45% { transform: scale(1.1) rotate(0); }
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floral-sway {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-8px); }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 700ms ease-out both;
 }
 
 .animate-zoom-in {
   animation: zoom-in 900ms ease-out both;
+}
+
+.animate-gallery-slide {
+  animation: gallery-slide 500ms ease-out both;
+}
+
+.animate-hero-image {
+  animation: hero-image-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+}
+
+.animate-hero-card {
+  animation: hero-card-in 800ms cubic-bezier(0.16, 1, 0.3, 1) 520ms both;
+}
+
+.animate-heart-beat {
+  animation: heart-beat 2.8s ease-in-out 1.25s both;
+  transform-origin: center;
+}
+
+.animate-modal-in {
+  animation: modal-in 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition: opacity 750ms ease-out, transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-sway {
+  animation: floral-sway 6s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.motion-press {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.motion-press:hover {
+  transform: translateY(-2px);
+}
+
+.motion-press:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-fade-in-up,
+  .animate-zoom-in,
+  .animate-gallery-slide,
+  .animate-hero-image,
+  .animate-hero-card,
+  .animate-heart-beat,
+  .animate-modal-in,
+  .motion-sway {
+    animation: none;
+  }
 }

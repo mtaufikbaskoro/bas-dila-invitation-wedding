@@ -1,6 +1,28 @@
-import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { GalleryGrid } from "@/components/gallery-grid";
+import { FloralDecoration } from "@/components/floral-decoration";
 import { PageFrame } from "@/components/page-frame";
+import { getGalleryImages } from "@/lib/gallery";
+import { wedding } from "@/lib/wedding";
 
-const gallery = ["gallery-portrait.svg", "gallery-detail.svg", "story-mountain.svg", "story-proposal.svg", "rsvp.svg"];
-export default function GaleriPage() { return <PageFrame><main className="mx-auto max-w-4xl px-6 py-16 sm:px-10"><header className="mx-auto mb-16 max-w-xl text-center"><h1 className="font-serif text-5xl font-bold text-primary">Galeri Foto</h1><p className="mt-4 text-lg text-muted">Momen-momen indah perjalanan cinta kami.</p><div className="mx-auto mt-8 h-px w-16 bg-primary-container" /></header><div className="grid grid-cols-2 items-start gap-5 sm:gap-8">{gallery.map((file, index) => <figure key={file} className={`${index === 0 || index === 3 ? "col-span-2" : "col-span-1"} ${index % 2 ? "rotate-2" : "-rotate-1"} rounded-sm border-8 border-surface-white bg-surface-white shadow-lg shadow-primary/10 transition hover:-translate-y-2 hover:rotate-0`}><div className={`relative ${index === 0 ? "aspect-[4/5]" : index === 3 ? "aspect-video" : "aspect-square"}`}><Image src={`/images/wedding/${file}`} alt={`Momen pernikahan ${index + 1}`} fill className="object-cover" /></div></figure>)}</div><button type="button" className="mx-auto mt-16 flex items-center gap-2 rounded-full border border-outline px-8 py-3 text-sm font-semibold text-muted transition hover:border-primary hover:text-primary">Lebih Banyak <ChevronDown size={16} /></button></main></PageFrame>; }
+export const dynamic = "force-dynamic";
+
+export default async function GaleriPage() {
+	const gallery = await getGalleryImages();
+
+	return (
+		<PageFrame>
+			<main className="relative mx-auto max-w-4xl overflow-hidden px-6 py-16 sm:px-10">
+				<FloralDecoration asset="green-white-leaves" className="-left-12 top-6 h-36 w-24 opacity-45 sm:left-0 sm:h-44 sm:w-28" />
+				<FloralDecoration asset="brown-white-leaves" className="-right-12 top-6 h-36 w-24 opacity-45 sm:right-0 sm:h-44 sm:w-28" />
+				<header className="relative z-10 mx-auto mb-16 max-w-xl text-center">
+					<h1 className="font-serif text-5xl font-bold text-primary">{wedding.galleryPage.title}</h1>
+					<p className="mt-4 text-lg text-muted">{wedding.galleryPage.description}</p>
+					<div className="mx-auto mt-8 h-px w-16 bg-primary-container" />
+				</header>
+				<div className="relative z-10">
+					<GalleryGrid gallery={gallery} />
+				</div>
+			</main>
+		</PageFrame>
+	);
+}
