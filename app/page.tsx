@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <PageFrame pattern>
       <main className="relative mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center overflow-hidden px-6 py-10 sm:px-10">
+        <FloralDecoration asset="corner-floral" layer="background" className="-right-10 top-12 h-48 w-48 opacity-45 sm:right-0 sm:top-8 sm:h-64 sm:w-64" />
         <section className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center">
           <p className="animate-fade-in-up mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">{wedding.home.eyebrow}</p>
           <h1 className="animate-fade-in-up mb-8 font-serif text-5xl font-bold leading-[1.05] text-primary [animation-delay:120ms] sm:text-7xl">
@@ -27,6 +28,9 @@ export default function Home() {
               <span>{wedding.location.city}, {wedding.location.country}</span>
             </div>
             <OpenInvitation label={wedding.home.openLabel} />
+          </div>
+          <div className="relative mt-5 h-12 w-64 sm:w-80">
+            <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
           </div>
         </section>
       </main>

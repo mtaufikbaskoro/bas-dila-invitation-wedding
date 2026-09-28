@@ -26,6 +26,7 @@ function Profile({
     <article className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2 md:[&>div:last-child]:text-right" : ""}`}>
       <div className="relative mx-auto h-[390px] w-full max-w-[300px] isolate sm:h-[450px] sm:max-w-[340px]">
         <div aria-hidden="true" className="absolute inset-2 translate-x-3 translate-y-3 arch-image border-2 border-outline-variant/60" />
+        <FloralDecoration asset="arch-ornament" motion={false} className="-inset-2 h-[calc(100%+16px)] w-[calc(100%+16px)] opacity-70" />
         <div className="relative z-10 h-full overflow-hidden arch-image bg-surface-high shadow-xl shadow-primary/20">
           <Image
             src={profile.image}
@@ -68,7 +69,8 @@ export default async function UndanganPage() {
             <Reveal>
               <Profile profile={wedding.couple.profiles[0]} reverse={false} eager />
             </Reveal>
-            <div className="flex items-center justify-center gap-5" aria-hidden="true">
+            <div className="relative flex items-center justify-center gap-5" aria-hidden="true">
+              <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-x-0 top-1/2 h-12 w-full -translate-y-1/2 opacity-75" />
               <span className="h-px w-20 bg-outline-variant sm:w-28" />
               <Heart className="motion-sway fill-primary text-primary" size={20} />
               <span className="h-px w-20 bg-outline-variant sm:w-28" />
@@ -83,6 +85,9 @@ export default async function UndanganPage() {
           <header className="relative z-10 mx-auto mb-20 max-w-xl text-center">
             <h1 className="font-serif text-5xl font-bold text-primary">{wedding.storyPage.title}</h1>
             <p className="mt-4 text-lg italic leading-relaxed text-muted">{wedding.storyPage.intro}</p>
+            <div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+              <FloralDecoration asset="branch-spray" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
+            </div>
           </header>
 
           <div className="relative z-10">
@@ -109,6 +114,7 @@ export default async function UndanganPage() {
 
           <section className="relative z-10 rounded-2xl bg-surface-low px-6 py-12 text-center">
             <FloralDecoration asset="bouquet" className="-bottom-12 -left-20 h-36 w-56 opacity-30" />
+            <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-60" />
             <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.storyPage.ctaTitle}</h2>
             <p className="mx-auto mt-3 max-w-md text-muted">{wedding.storyPage.ctaText}</p>
             <a href="#rsvp" className="group motion-press mt-7 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-md shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
@@ -127,6 +133,9 @@ export default async function UndanganPage() {
               </div>
             </div>
             <h1 className="-mt-5 z-10 rounded-full border border-outline-variant bg-surface-white px-10 py-3 font-serif text-2xl font-semibold text-primary shadow-md">{wedding.eventPage.title}</h1>
+            <div className="relative mt-4 h-12 w-64">
+              <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+            </div>
           </div>
 
           <div className="relative z-10 mt-20 grid gap-6 md:grid-cols-2">
@@ -176,6 +185,7 @@ export default async function UndanganPage() {
           <Reveal>
             <section className="relative z-10 mt-20 text-center">
               <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
+              <FloralDecoration asset="celebration-sparkle" layer="background" className="-left-8 -top-8 h-24 w-24 opacity-65" />
               <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
               <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
                 <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />
@@ -191,7 +201,9 @@ export default async function UndanganPage() {
           <header className="relative z-10 mx-auto mb-16 max-w-xl text-center">
             <h1 className="font-serif text-5xl font-bold text-primary">{wedding.galleryPage.title}</h1>
             <p className="mt-4 text-lg text-muted">{wedding.galleryPage.description}</p>
-            <div className="mx-auto mt-8 h-px w-16 bg-primary-container" />
+            <div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+              <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+            </div>
           </header>
           <div className="relative z-10">
             <GalleryGrid gallery={gallery} />
@@ -208,6 +220,9 @@ export default async function UndanganPage() {
             </div>
             <h1 className="mt-5 font-serif text-5xl font-bold text-primary">{wedding.rsvpPage.title}</h1>
             <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">{wedding.rsvpPage.intro}</p>
+            <div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+              <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+            </div>
           </div>
 
           <div className="relative z-10">
@@ -216,6 +231,7 @@ export default async function UndanganPage() {
 
           <section className="relative z-10 border-t border-outline-variant/50 pt-10 text-center">
             <FloralDecoration asset="bouquet" className="-bottom-16 -left-24 h-40 w-40 opacity-45 sm:-left-32 sm:h-48 sm:w-48" />
+            <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-55" />
             <h2 className="font-serif text-3xl font-semibold text-primary">{wedding.rsvpPage.giftsTitle}</h2>
             <p className="mt-3 text-muted">{wedding.rsvpPage.giftsIntro}</p>
             <div className="mt-6 grid gap-4">

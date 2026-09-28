@@ -18,12 +18,16 @@ export default function RsvpPage() {
           </div>
           <h1 className="mt-5 font-serif text-5xl font-bold text-primary">{wedding.rsvpPage.title}</h1>
           <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">{wedding.rsvpPage.intro}</p>
+          <div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+            <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+          </div>
         </section>
         <div className="relative z-10">
           <RsvpForm />
         </div>
         <section className="relative z-10 border-t border-outline-variant/50 pt-10 text-center">
           <FloralDecoration asset="bouquet" className="-bottom-16 -left-24 h-40 w-40 opacity-45 sm:-left-32 sm:h-48 sm:w-48" />
+          <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-55" />
           <h2 className="font-serif text-3xl font-semibold text-primary">{wedding.rsvpPage.giftsTitle}</h2>
           <p className="mt-3 text-muted">{wedding.rsvpPage.giftsIntro}</p>
           <div className="mt-6 grid gap-4">

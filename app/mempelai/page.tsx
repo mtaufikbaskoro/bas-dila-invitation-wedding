@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Heart } from "lucide-react";
+import { FloralDecoration } from "@/components/floral-decoration";
 import { PageFrame } from "@/components/page-frame";
 import { Reveal } from "@/components/reveal";
 import { wedding } from "@/lib/wedding";
@@ -17,6 +18,7 @@ function Profile({
     <article className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2 md:[&>div:last-child]:text-right" : ""}`}>
       <div className="relative mx-auto h-[390px] w-full max-w-[300px] isolate sm:h-[450px] sm:max-w-[340px]">
         <div aria-hidden="true" className="absolute inset-2 translate-x-3 translate-y-3 arch-image border-2 border-outline-variant/60" />
+        <FloralDecoration asset="arch-ornament" motion={false} className="-inset-2 h-[calc(100%+16px)] w-[calc(100%+16px)] opacity-70" />
         <div className="relative z-10 h-full overflow-hidden arch-image bg-surface-high shadow-xl shadow-primary/20">
           <Image
             src={profile.image}
@@ -56,7 +58,8 @@ export default function MempelaiPage() {
           <Reveal>
             <Profile profile={wedding.couple.profiles[0]} reverse={false} eager />
           </Reveal>
-          <div className="flex items-center justify-center gap-5" aria-hidden="true">
+          <div className="relative flex items-center justify-center gap-5" aria-hidden="true">
+            <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-x-0 top-1/2 h-12 w-full -translate-y-1/2 opacity-75" />
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
             <Heart className="motion-sway fill-primary text-primary" size={20} />
             <span className="h-px w-20 bg-outline-variant sm:w-28" />
