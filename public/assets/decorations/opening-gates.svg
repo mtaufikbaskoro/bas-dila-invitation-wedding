@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" fill="none">
+  <defs>
+    <linearGradient id="gate-left" x1="120" y1="450" x2="450" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff8f5"/>
+      <stop offset="1" stop-color="#efd8dc"/>
+    </linearGradient>
+    <linearGradient id="gate-right" x1="780" y1="450" x2="450" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff8f5"/>
+      <stop offset="1" stop-color="#efd8dc"/>
+    </linearGradient>
+    <linearGradient id="gate-metal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f8e8c4"/>
+      <stop offset=".5" stop-color="#d8a85a"/>
+      <stop offset="1" stop-color="#fff1c7"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .gate-leaf {
+      transform-box: fill-box;
+      animation-duration: 6600ms;
+      animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+      animation-fill-mode: both;
+    }
+    .gate-leaf-left {
+      transform-origin: right center;
+      animation-name: gate-open-left;
+    }
+    .gate-leaf-right {
+      transform-origin: left center;
+      animation-name: gate-open-right;
+    }
+    @keyframes gate-open-left {
+      0%, 14% { transform: translateX(0); opacity: 1; }
+      46%, 100% { transform: translateX(-100%); opacity: .18; }
+    }
+    @keyframes gate-open-right {
+      0%, 14% { transform: translateX(0); opacity: 1; }
+      46%, 100% { transform: translateX(100%); opacity: .18; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gate-leaf { animation: none !important; }
+    }
+  </style>
+
+  <path d="M72 1128V478C72 269 241 100 450 100s378 169 378 378v650" fill="#fff8f5" fill-opacity=".38" stroke="#c58b9d" stroke-width="8"/>
+  <path d="M104 1128V480c0-191 155-346 346-346s346 155 346 346v648" stroke="#e7cbd2" stroke-width="4"/>
+  <path d="M72 1128h756" stroke="url(#gate-metal)" stroke-width="12"/>
+
+  <g class="gate-leaf gate-leaf-left">
+    <path d="M132 1080V482c0-176 142-318 318-318v916H132Z" fill="url(#gate-left)" stroke="#a0376a" stroke-width="7"/>
+    <path d="M160 1052V484c0-147 119-266 266-266v834H160Z" stroke="#c58b9d" stroke-width="4"/>
+    <path d="M194 1050V484c0-128 104-232 232-232v798H194Z" stroke="#e7cbd2" stroke-width="3"/>
+    <path d="M216 1048V486c0-116 94-210 210-210v772" stroke="#d8a85a" stroke-opacity=".7" stroke-width="3"/>
+    <path d="M302 1048V480m74 568V480" stroke="#c58b9d" stroke-opacity=".65" stroke-width="4"/>
+    <path d="M450 164v916" stroke="url(#gate-metal)" stroke-width="9"/>
+    <path d="M344 716c-27-29-31-64-12-104 35 21 47 54 34 94m14 122c-29-23-39-56-26-98 38 15 55 45 47 86m-88 34c-5-38 11-68 48-91 20 36 14 70-15 101" stroke="#71815a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M356 727c2-34 21-54 58-60 1 36-18 56-58 60Zm8 104c3-35 22-54 59-58-1 36-20 55-59 58Zm-69-11c-27-25-30-55-9-91 33 21 41 51 9 91Z" fill="#dce3d0" stroke="#71815a" stroke-width="4"/>
+    <g fill="#f4c5d4" stroke="#a0376a" stroke-width="3">
+      <circle cx="402" cy="760" r="16"/><circle cx="378" cy="782" r="13"/><circle cx="426" cy="786" r="13"/>
+      <circle cx="402" cy="827" r="13"/><circle cx="378" cy="849" r="11"/><circle cx="426" cy="851" r="11"/>
+    </g>
+    <circle cx="402" cy="760" r="6" fill="#d8a85a"/>
+    <circle cx="402" cy="827" r="5" fill="#d8a85a"/>
+    <path d="M396 490h42m-42 34h42m-42 34h42m-42 34h42" stroke="#d8a85a" stroke-opacity=".65" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g class="gate-leaf gate-leaf-right">
+    <path d="M450 164c176 0 318 142 318 318v598H450V164Z" fill="url(#gate-right)" stroke="#a0376a" stroke-width="7"/>
+    <path d="M450 218c147 0 266 119 266 266v568H450V218Z" stroke="#c58b9d" stroke-width="4"/>
+    <path d="M450 252c128 0 232 104 232 232v566H450V252Z" stroke="#e7cbd2" stroke-width="3"/>
+    <path d="M474 276c116 0 210 94 210 210v562" stroke="#d8a85a" stroke-opacity=".7" stroke-width="3"/>
+    <path d="M524 480v568m74-568v568" stroke="#c58b9d" stroke-opacity=".65" stroke-width="4"/>
+    <path d="M450 164v916" stroke="url(#gate-metal)" stroke-width="9"/>
+    <path d="M556 716c27-29 31-64 12-104-35 21-47 54-34 94m-14 122c29-23 39-56 26-98-38 15-55 45-47 86m88 34c5-38-11-68-48-91-20 36-14 70 15 101" stroke="#71815a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M544 727c-2-34-21-54-58-60-1 36 18 56 58 60Zm-8 104c-3-35-22-54-59-58 1 36 20 55 59 58Zm69-11c27-25 30-55 9-91-33 21-41 51-9 91Z" fill="#dce3d0" stroke="#71815a" stroke-width="4"/>
+    <g fill="#f4c5d4" stroke="#a0376a" stroke-width="3">
+      <circle cx="498" cy="760" r="16"/><circle cx="522" cy="782" r="13"/><circle cx="474" cy="786" r="13"/>
+      <circle cx="498" cy="827" r="13"/><circle cx="522" cy="849" r="11"/><circle cx="474" cy="851" r="11"/>
+    </g>
+    <circle cx="498" cy="760" r="6" fill="#d8a85a"/>
+    <circle cx="498" cy="827" r="5" fill="#d8a85a"/>
+    <path d="M462 490h42m-42 34h42m-42 34h42m-42 34h42" stroke="#d8a85a" stroke-opacity=".65" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <path d="M84 1128V478C84 276 248 112 450 112s366 164 366 366v650" stroke="url(#gate-metal)" stroke-width="9"/>
+  <path d="M58 1128h784" stroke="#d8a85a" stroke-opacity=".8" stroke-width="3"/>
+</svg>
