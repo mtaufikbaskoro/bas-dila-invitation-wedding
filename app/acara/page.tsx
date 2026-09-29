@@ -22,6 +22,9 @@ export default function AcaraPage() {
                         </div>
                     </div>
                     <h1 className="-mt-5 z-10 rounded-full border border-outline-variant bg-surface-white px-10 py-3 font-serif text-2xl font-semibold text-primary shadow-md">{wedding.eventPage.title}</h1>
+                    <div className="relative mt-4 h-12 w-64">
+                        <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+                    </div>
                 </section>
                 <section className="relative z-10 mt-20 grid gap-6 md:grid-cols-2">
                     {wedding.events.map((event, index) => {
@@ -53,6 +56,7 @@ export default function AcaraPage() {
                                 <Reveal>
                                     <section className="relative z-10 mt-20 text-center">
                     <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
+                                    <FloralDecoration asset="celebration-sparkle" layer="background" className="-left-8 -top-8 h-24 w-24 opacity-65" />
                     <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
                     <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
                         <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />

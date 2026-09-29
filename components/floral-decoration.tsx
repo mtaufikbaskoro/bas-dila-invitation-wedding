@@ -12,7 +12,12 @@ type FloralAsset =
   | "brown-white-leaves"
   | "light-pink-flower"
   | "rose-flower"
-  | "yellow-flower";
+  | "yellow-flower"
+  | "corner-floral"
+  | "branch-spray"
+  | "botanical-divider"
+  | "arch-ornament"
+  | "celebration-sparkle";
 
 const assetPaths: Record<FloralAsset, string> = {
   bouquet: "/assets/flowers/bouquet.png",
@@ -27,6 +32,11 @@ const assetPaths: Record<FloralAsset, string> = {
     "light-pink-flower": "/assets/flowers/light-pink-flower.png",
     "rose-flower": "/assets/flowers/rose-flower.png",
     "yellow-flower": "/assets/flowers/yellow-flower.png",
+    "corner-floral": "/assets/decorations/corner-floral.svg",
+    "branch-spray": "/assets/decorations/branch-spray.svg",
+    "botanical-divider": "/assets/decorations/botanical-divider.svg",
+    "arch-ornament": "/assets/decorations/arch-ornament.svg",
+    "celebration-sparkle": "/assets/decorations/celebration-sparkle.svg",
 };
 
 export function FloralDecoration({
@@ -34,14 +44,18 @@ export function FloralDecoration({
   className = "",
   priority = false,
   loading = "lazy",
+  layer = "foreground",
+  motion = true,
 }: {
   asset: FloralAsset;
   className?: string;
   priority?: boolean;
   loading?: "eager" | "lazy";
+  layer?: "background" | "foreground";
+  motion?: boolean;
 }) {
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute z-20 select-none motion-sway ${className}`}>
+    <div aria-hidden="true" className={`pointer-events-none absolute ${layer === "background" ? "z-0" : "z-20"} ${motion ? "motion-sway" : ""} select-none ${className}`}>
       <Image
         src={assetPaths[asset]}
         alt=""

@@ -17,7 +17,9 @@ export default async function GaleriPage() {
 				<header className="relative z-10 mx-auto mb-16 max-w-xl text-center">
 					<h1 className="font-serif text-5xl font-bold text-primary">{wedding.galleryPage.title}</h1>
 					<p className="mt-4 text-lg text-muted">{wedding.galleryPage.description}</p>
-					<div className="mx-auto mt-8 h-px w-16 bg-primary-container" />
+					<div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+						<FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-75" />
+					</div>
 				</header>
 				<div className="relative z-10">
 					<GalleryGrid gallery={gallery} />

@@ -13,6 +13,9 @@ export default function CeritaPage() {
         <header className="relative z-10 mx-auto mb-20 max-w-xl text-center">
           <h1 className="font-serif text-5xl font-bold text-primary">{wedding.storyPage.title}</h1>
           <p className="mt-4 text-lg italic leading-relaxed text-muted">{wedding.storyPage.intro}</p>
+          <div className="relative mx-auto mt-4 h-12 w-full max-w-sm">
+            <FloralDecoration asset="branch-spray" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
+          </div>
         </header>
         <section className="relative z-10">
           <div className="absolute bottom-0 left-4 top-0 w-px bg-outline-variant/60 md:left-1/2" />
@@ -37,6 +40,7 @@ export default function CeritaPage() {
         </section>
         <section className="relative z-10 rounded-2xl bg-surface-low px-6 py-12 text-center">
           <FloralDecoration asset="bouquet" className="-bottom-12 -left-20 h-36 w-56 opacity-30" />
+          <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-60" />
           <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.storyPage.ctaTitle}</h2>
           <p className="mx-auto mt-3 max-w-md text-muted">{wedding.storyPage.ctaText}</p>
           <Link href="/rsvp" className="group motion-press mt-7 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-md shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">{wedding.storyPage.ctaLabel} <ArrowRight className="transition-transform group-hover:translate-x-1" size={16} /></Link>
