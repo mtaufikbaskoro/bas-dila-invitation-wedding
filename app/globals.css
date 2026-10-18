@@ -505,6 +505,16 @@ textarea {
   transform: translateY(1px) scale(0.98);
 }
 
+.gallery-lightbox {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@media (hover: none) {
+  .gallery-lightbox button:hover {
+    background-color: inherit;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

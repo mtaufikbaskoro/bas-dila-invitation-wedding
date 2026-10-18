@@ -37,7 +37,7 @@ export const wedding = {
   },
   images: {
     hero: "/images/wedding/hero.jpg",
-    rsvp: "/gallery/9.jpg",
+    rsvp: "/gallery/05.jpg",
     map: "/images/wedding/map.svg",
     story: [
       { 

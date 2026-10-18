@@ -20,13 +20,18 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    if (!audio.src) {
+      audio.src = musicSource;
+      audio.load();
+    }
+
     audio.currentTime = 0;
     void audio.play().catch(() => undefined);
   }
 
   return (
     <MusicContext.Provider value={{ startMusic }}>
-      <audio ref={audioRef} preload="auto" src={musicSource} />
+      <audio ref={audioRef} preload="none" />
       {children}
     </MusicContext.Provider>
   );

@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <PageFrame pattern>
       <main className="home-invitation-canvas relative mx-auto flex min-h-dvh w-full max-w-5xl flex-col items-center justify-center overflow-hidden px-6 py-8 sm:px-10 sm:py-12">
-        <FloralDecoration asset="corner-floral" layer="background" priority className="-left-12 top-10 h-44 w-44 rotate-180 opacity-35 sm:left-0 sm:top-8 sm:h-60 sm:w-60" />
-        <FloralDecoration asset="corner-floral" layer="background" priority className="-right-10 bottom-10 h-48 w-48 opacity-45 sm:right-0 sm:bottom-8 sm:h-64 sm:w-64" />
+        <FloralDecoration asset="corner-floral" layer="background" className="-left-12 top-10 h-44 w-44 rotate-180 opacity-35 sm:left-0 sm:top-8 sm:h-60 sm:w-60" />
+        <FloralDecoration asset="corner-floral" layer="background" className="-right-10 bottom-10 h-48 w-48 opacity-45 sm:right-0 sm:bottom-8 sm:h-64 sm:w-64" />
         <section className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center">
           <p className="animate-fade-in-up mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary sm:text-xs">
             <span aria-hidden="true" className="h-px w-8 bg-primary/40" />
