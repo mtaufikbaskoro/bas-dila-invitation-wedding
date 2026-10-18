@@ -30,6 +30,10 @@ export const wedding = {
     city: "Simalungun",
     country: "Indonesia",
     mapLabel: "Peta lokasi utama di Simalungun",
+    coordinates: [2.8983231, 98.8876945] as [number, number],
+    venueName: "Rumah Pengantin Wanita",
+    venueAddress: "Kampung Jawa, Desa Bangun Rakyat Kec. Panei, Kab. Simalungun",
+    mapUrl: "https://www.google.com/maps/place/Baksoto+Java+Tea/@2.8983231,98.8876945,17z/data=!3m1!4b1!4m6!3m5!1s0x303197e5b21bff5d:0x1c712c63ec2ee6c6!8m2!3d2.8983231!4d98.8876945!16s%2Fg%2F11gj4t61bb!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D",
   },
   images: {
     hero: "/images/wedding/hero.jpg",

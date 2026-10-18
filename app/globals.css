@@ -74,6 +74,38 @@ textarea {
   border-radius: 999px 999px 1rem 1rem;
 }
 
+.event-map .leaflet-container {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  font-family: inherit;
+}
+
+.event-map .leaflet-control-attribution,
+.event-map .leaflet-control-zoom {
+  z-index: 10;
+}
+
+.event-map .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.event-map-marker {
+  background: transparent;
+  border: 0;
+}
+
+.event-map-marker span {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border: 3px solid white;
+  border-radius: 50% 50% 50% 0;
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(34, 26, 19, 0.35);
+  transform: rotate(-45deg);
+}
+
 .ambient-shadow {
   box-shadow: 0 16px 40px -18px rgba(160, 55, 106, 0.35);
 }
