@@ -142,7 +142,7 @@ export function OpenInvitation({ label }: { label: string }) {
                 ref={continueButtonRef}
                 type="button"
                 onClick={beginTransition}
-                className="opening-continue motion-press inline-flex min-h-11 items-center gap-2 rounded-full border border-outline-variant bg-surface-white/90 px-6 py-2 text-sm font-semibold text-primary shadow-md shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary"
+                className="hidden opening-continue motion-press min-h-11 items-center gap-2 rounded-full border border-outline-variant bg-surface-white/90 px-6 py-2 text-sm font-semibold text-primary shadow-md shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary"
                 aria-label="Lanjutkan ke undangan"
               >
                 {phase === "transitioning" ? "Membuka undangan" : "Lanjutkan"}

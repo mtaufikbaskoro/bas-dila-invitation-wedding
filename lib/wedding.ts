@@ -57,7 +57,7 @@ export const wedding = {
       { 
         date: "Juli 2026", 
         title: "Sebuah Pertanyaan", 
-        text: "Akhirnya, kebersamaan yang telah kami jalin ini menemui titik akhir. Kami berdua memutuskan untuk menjadikan rasa ini sebagai sesuatu yang dihalalkan oleh sang pencipta.  Pada bulan Juli itu, dia membawa kedua orang tua dan keluarganya ke rumah. Perkenalan keluarga, yang nantinya akan menjadi awal baru untuk kisah ini.Di tempat yang sama saat kami pertama kali bertemu, dengan cincin sederhana dan hati yang berdebar, sebuah Ya diucapkan, memulai babak baru dalam hidup kami.", 
+        text: "Akhirnya, kebersamaan yang telah kami jalin ini menemui titik akhir. Kami berdua memutuskan untuk menjadikan rasa ini sebagai sesuatu yang dihalalkan oleh sang pencipta.  Pada bulan Juli itu, dia membawa kedua orang tua dan keluarganya ke rumah. Perkenalan keluarga, yang nantinya akan menjadi awal baru untuk kisah ini.", 
         image: "/images/wedding/foto-story-3.jpeg", 
         shape: "rounded-full" 
       },
@@ -105,7 +105,7 @@ export const wedding = {
     giftsTitle: "Kado Pernikahan",
     giftsIntro: "Doa restu Anda adalah kado terindah bagi kami. Jika ingin memberikan tanda kasih, Anda dapat melalui:",
     gifts: [
-      { title: "Transfer Bank BNI", description: "a.n. Fadhilah Ramadhani 0822930022", kind: "bank" },
+      { title: "Transfer Bank BNI", description: "a.n. Fadhilah Ramadhani 917602405", kind: "bank" },
       { title: "Kirim Hadiah Langsung", description: "Jalan Jend Sudirman Gg Selamat Binjai Kota, Kota Binjai, Sumatera Utara, 20713", kind: "store" },
     ],
   },

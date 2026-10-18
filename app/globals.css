@@ -175,7 +175,7 @@ textarea {
   z-index: 2;
   width: min(96vw, 64rem);
   height: min(88vh, 68rem);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% + clamp(1.5rem, 5vh, 4rem)));
   perspective: 1500px;
 }
 
@@ -314,7 +314,7 @@ textarea {
   .opening-gate-layer {
     width: min(100vw, 38rem);
     height: min(78vh, 46rem);
-    transform: translate(-50%, calc(-50% - 2vh));
+    transform: translate(-50%, calc(-50% + clamp(1.5rem, 4vh, 2.5rem)));
   }
 
   .opening-letter {
