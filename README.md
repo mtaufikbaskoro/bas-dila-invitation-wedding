@@ -34,7 +34,15 @@ Replace the placeholder SVG files in `public/images/wedding/` with your own imag
 
 The remaining components use these paths directly, so replacing a file does not require code changes. The gallery uses the separate `public/gallery/` folder described above. On deployments where files are packaged at build time, add the images before building or redeploy after adding new images.
 
-The RSVP form currently demonstrates local validation and success state only. Its submit boundary can later be connected to a server action or API.
+## RSVP submissions
+
+RSVPs are submitted to this project's Next.js Node.js runtime. Configure `DATABASE_URL` for MySQL and `RSVP_CAPTCHA_SECRET` to a private random value of at least 32 characters (generate one with `openssl rand -base64 32`). In non-production local development only, the CAPTCHA uses a fixed development secret if the environment variable is absent. Production requires the secret to be configured. The arithmetic challenge is first-party and expires after five minutes. Challenges are stateless and can be replayed until expiry; in-memory rate limits are per process and reset on restart.
+
+Validated responses are stored in MySQL through Prisma. Set `DATABASE_URL`, then run `npm run db:generate` and `npm run db:migrate` to create/update the `rsvps` table. Each normalized email has one RSVP; subsequent submissions update the existing record.
+
+The server checks curated English and Indonesian terms in names, email addresses, and notes. The initial list is project-maintained and deliberately small; it is a moderation aid rather than a complete language inventory. Review it periodically for false positives and regional usage. Values are validated, stored as data, and rendered through React's escaped text handling.
+
+The runtime rate limit is 10 submission attempts per 10 minutes per observed client IP; a reverse proxy must provide a trustworthy `x-forwarded-for` header. Request bodies are capped at 8 KiB and cross-origin submissions are rejected.
 
 The project uses `next/font` to load Playfair Display and Plus Jakarta Sans.
 
