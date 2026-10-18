@@ -74,6 +74,38 @@ textarea {
   border-radius: 999px 999px 1rem 1rem;
 }
 
+.event-map .leaflet-container {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  font-family: inherit;
+}
+
+.event-map .leaflet-control-attribution,
+.event-map .leaflet-control-zoom {
+  z-index: 10;
+}
+
+.event-map .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.event-map-marker {
+  background: transparent;
+  border: 0;
+}
+
+.event-map-marker span {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border: 3px solid white;
+  border-radius: 50% 50% 50% 0;
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(34, 26, 19, 0.35);
+  transform: rotate(-45deg);
+}
+
 .ambient-shadow {
   box-shadow: 0 16px 40px -18px rgba(160, 55, 106, 0.35);
 }
@@ -110,9 +142,21 @@ textarea {
 
 .invitation-opening-backdrop {
   isolation: isolate;
-  background:
-    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.92) 0%, rgba(255, 248, 245, 0.97) 48%, rgba(255, 241, 231, 0.99) 100%);
-  animation: invitation-backdrop 6600ms ease both;
+  background: #fff8f5;
+}
+
+.invitation-phase-revealing,
+.invitation-phase-transitioning {
+  background: radial-gradient(ellipse at center, #ffffff 0%, #fff8f5 58%, #fff1e7 100%);
+}
+
+.invitation-phase-transitioning .opening-scene {
+  animation: opening-scene-out 1100ms ease-in both;
+}
+
+.invitation-phase-transitioning .opening-continue {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .invitation-opening-backdrop::before {
@@ -126,9 +170,12 @@ textarea {
 
 .opening-gate-layer {
   position: absolute;
+  top: 50%;
+  left: 50%;
   z-index: 2;
   width: min(96vw, 64rem);
   height: min(88vh, 68rem);
+  transform: translate(-50%, -50%);
   perspective: 1500px;
 }
 
@@ -194,7 +241,7 @@ textarea {
   z-index: 4;
   width: min(90vw, 64rem);
   transform: translateX(-50%);
-  animation: opening-copy 6600ms ease both;
+  animation: none;
 }
 
 .opening-stage {
@@ -209,12 +256,12 @@ textarea {
 .opening-letter {
   top: 50%;
   left: 50%;
-  width: min(94vw, 86rem);
-  height: min(86vh, 64rem);
+  width: min(82vw, 30rem);
+  height: min(64vh, 40rem);
   border-radius: 0.5rem;
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 217, 229, 0.4), transparent 55%);
-  transform: translate(-50%, 0) scale(0.72);
-  animation: opening-letter 6600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform: translate(-50%, -50%) scale(0.72);
+  animation: none;
+  opacity: 0;
 }
 
 .opening-sparkle {
@@ -267,7 +314,12 @@ textarea {
   .opening-gate-layer {
     width: min(100vw, 38rem);
     height: min(78vh, 46rem);
-    transform: translateY(-2vh);
+    transform: translate(-50%, calc(-50% - 2vh));
+  }
+
+  .opening-letter {
+    width: min(84vw, 26rem);
+    height: min(58vh, 34rem);
   }
 
   .opening-action-dock {
@@ -279,22 +331,61 @@ textarea {
   }
 }
 
-@keyframes invitation-backdrop {
-  0% { opacity: 0; }
-  5%, 91% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes opening-scene-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.16); }
 }
 
-@keyframes opening-letter {
-  0%, 16% { opacity: 0.86; transform: translate(-50%, 0) scale(0.72); }
-  48% { opacity: 1; transform: translate(-50%, -28%) scale(0.92); }
-  64%, 88% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
-  100% { opacity: 0; transform: translate(-50%, -58%) scale(1.22); }
+.invitation-phase-closing .opening-scene {
+  animation: opening-content-close 850ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
 
-@keyframes opening-copy {
-  0%, 36% { opacity: 1; transform: translate(-50%, 0); }
-  56%, 100% { opacity: 0; transform: translate(-50%, -1.5rem); }
+.invitation-phase-revealing .opening-copy {
+  animation: opening-copy-reveal 500ms ease both;
+}
+
+.invitation-phase-revealing .opening-letter {
+  animation: opening-letter-reveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
+}
+
+.invitation-phase-revealing .opening-gates {
+  animation: opening-gates-reveal 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.invitation-phase-transitioning .opening-letter {
+  animation: opening-letter-out 1100ms ease-in both;
+}
+
+.undangan-entry {
+  animation: undangan-entry 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes opening-content-close {
+  to { opacity: 0; transform: scale(0.94) translateY(1rem); }
+}
+
+@keyframes opening-copy-reveal {
+  from { opacity: 0; transform: translate(-50%, -1rem); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes opening-letter-reveal {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.72); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes opening-gates-reveal {
+  from { opacity: 0.65; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes opening-letter-out {
+  to { opacity: 0; transform: translate(-50%, -58%) scale(1.2); }
+}
+
+@keyframes undangan-entry {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes opening-sparkle {
@@ -440,6 +531,7 @@ textarea {
   .animate-modal-in,
   .motion-sway,
   .invitation-opening-backdrop,
+  .undangan-entry,
   .opening-gates,
   .opening-letter,
   .opening-copy,

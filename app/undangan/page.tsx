@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { ArrowRight, Clock3, Gift, Heart, MapPin, Mosque, PartyPopper, Store } from "lucide-react";
 import { FloralDecoration } from "@/components/floral-decoration";
+import { EventMapLoader } from "@/components/event-map-loader";
 import { GalleryGrid } from "@/components/gallery-grid";
 import { PageFrame } from "@/components/page-frame";
 import { Reveal } from "@/components/reveal";
 import { RsvpForm } from "@/components/rsvp-form";
+import { RsvpDoaWall } from "@/components/rsvp-doa-wall";
 import { getGalleryImages } from "@/lib/gallery";
+import { getRsvpDoaEntries } from "@/lib/rsvp-doa";
 import { wedding } from "@/lib/wedding";
 
 const eventPresentation = [
@@ -54,11 +57,11 @@ function Profile({
 export const dynamic = "force-dynamic";
 
 export default async function UndanganPage() {
-  const gallery = await getGalleryImages();
+  const [gallery, doaEntries] = await Promise.all([getGalleryImages(), getRsvpDoaEntries()]);
 
   return (
     <PageFrame pattern>
-      <main className="relative mx-auto w-full max-w-6xl overflow-x-hidden">
+      <main className="undangan-entry relative mx-auto w-full max-w-6xl overflow-x-hidden">
         <section id="mempelai" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-16 sm:px-10 sm:py-20">
           <header className="relative z-10 mx-auto max-w-2xl text-center">
             <h1 className="font-serif text-5xl font-bold leading-tight text-primary sm:text-6xl">{wedding.couplePage.title}</h1>
@@ -79,6 +82,28 @@ export default async function UndanganPage() {
               <Profile profile={wedding.couple.profiles[1]} reverse />
             </Reveal>
           </div>
+        </section>
+
+        <section aria-labelledby="ayat-title" className="relative mx-auto max-w-4xl overflow-hidden px-6 py-14 sm:px-10 sm:py-20">
+          <Reveal>
+            <div className="relative z-10 mx-auto max-w-3xl border-y border-outline-variant/70 bg-surface-low px-6 py-10 text-center shadow-lg shadow-primary/10 backdrop-blur-sm sm:px-12 sm:py-14">
+              <FloralDecoration asset="corner-floral" layer="background" className="-left-10 -top-8 h-32 w-32 rotate-180 opacity-35 sm:-left-14 sm:-top-10 sm:h-40 sm:w-40" />
+              <FloralDecoration asset="corner-floral" layer="background" className="-bottom-10 -right-10 h-32 w-32 opacity-35 sm:-bottom-12 sm:-right-14 sm:h-40 sm:w-40" />
+              <header className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-secondary">{wedding.surahPage.eyebrow}</p>
+                <h2 id="ayat-title" className="mt-2 font-serif text-3xl font-semibold text-primary sm:text-4xl">{wedding.surahPage.reference}</h2>
+              </header>
+              <p lang="ar" dir="rtl" className="relative mt-8 font-serif text-3xl leading-[2.2] text-foreground sm:mt-10 sm:text-4xl sm:leading-[2.3]">
+                {wedding.surahPage.arabic}
+              </p>
+              <div className="relative mx-auto my-7 h-10 w-56 sm:my-8 sm:w-72">
+                <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
+              </div>
+              <p className="relative mx-auto max-w-2xl text-sm leading-8 text-muted sm:text-base sm:leading-9">
+                {wedding.surahPage.translation}
+              </p>
+            </div>
+          </Reveal>
         </section>
 
         <section id="cerita" className="relative mx-auto max-w-5xl overflow-hidden px-6 py-16 sm:px-10">
@@ -187,9 +212,7 @@ export default async function UndanganPage() {
               <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
               <FloralDecoration asset="celebration-sparkle" layer="background" className="-left-8 -top-8 h-24 w-24 opacity-65" />
               <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
-              <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
-                <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />
-              </div>
+              <EventMapLoader />
               <p className="mx-auto mt-6 max-w-lg leading-relaxed text-muted">{wedding.eventPage.parkingNote}</p>
             </section>
           </Reveal>
@@ -229,6 +252,8 @@ export default async function UndanganPage() {
             <RsvpForm />
           </div>
 
+          <RsvpDoaWall entries={doaEntries} />
+
           <section className="relative z-10 border-t border-outline-variant/50 pt-10 text-center">
             <FloralDecoration asset="bouquet" className="-bottom-16 -left-24 h-40 w-40 opacity-45 sm:-left-32 sm:h-48 sm:w-48" />
             <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-55" />
@@ -240,7 +265,7 @@ export default async function UndanganPage() {
                 const iconClass = gift.kind === "bank" ? "bg-primary-soft text-primary" : "bg-secondary-container text-secondary";
 
                 return (
-                  <a key={gift.title} href={gift.href} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
+                  <div key={gift.title} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
                     <span className="flex items-center gap-4">
                       <span className={`flex size-12 items-center justify-center rounded-full ${iconClass}`}><GiftIcon /></span>
                       <span>
@@ -248,8 +273,7 @@ export default async function UndanganPage() {
                         <small className="block text-muted">{gift.description}</small>
                       </span>
                     </span>
-                    <span className="text-2xl text-outline">›</span>
-                  </a>
+                  </div>
                 );
               })}
             </div>

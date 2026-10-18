@@ -4,11 +4,14 @@ import Image from "next/image";
 import { ArrowRight, Clock3, Gift, Heart, MapPin, Mosque, PartyPopper, Store } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FloralDecoration } from "@/components/floral-decoration";
+import { EventMapLoader } from "@/components/event-map-loader";
 import { GalleryGrid } from "@/components/gallery-grid";
 import { OpenInvitation } from "@/components/open-invitation";
 import { PageFrame } from "@/components/page-frame";
 import { Reveal } from "@/components/reveal";
 import { RsvpForm } from "@/components/rsvp-form";
+import { RsvpDoaWall } from "@/components/rsvp-doa-wall";
+import type { RsvpDoaEntry } from "@/lib/rsvp-doa";
 import { wedding } from "@/lib/wedding";
 
 const eventPresentation = [
@@ -54,7 +57,7 @@ function Profile({
   );
 }
 
-export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string; url: string }> }) {
+export function InvitationShell({ gallery, doaEntries = [] }: { gallery: Array<{ fileName: string; url: string }>; doaEntries?: RsvpDoaEntry[] }) {
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
@@ -233,9 +236,7 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
               <FloralDecoration asset="yellow-flower" className="-right-8 top-10 h-20 w-20 opacity-55 sm:right-0 sm:h-24 sm:w-24" />
               <FloralDecoration asset="celebration-sparkle" layer="background" className="-left-8 -top-8 h-24 w-24 opacity-65" />
               <h2 className="font-serif text-2xl font-semibold text-primary">{wedding.eventPage.mapTitle}</h2>
-              <div className="relative mt-6 h-64 overflow-hidden rounded-2xl">
-                <Image src={wedding.images.map} alt={wedding.eventPage.mapAlt} fill sizes="(max-width: 640px) calc(100vw - 48px), 896px" className="object-cover" />
-              </div>
+              <EventMapLoader />
               <p className="mx-auto mt-6 max-w-lg leading-relaxed text-muted">{wedding.eventPage.parkingNote}</p>
             </section>
           </Reveal>
@@ -275,6 +276,8 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
             <RsvpForm />
           </div>
 
+          <RsvpDoaWall entries={doaEntries} />
+
           <section className="relative z-10 border-t border-outline-variant/50 pt-10 text-center">
             <FloralDecoration asset="bouquet" className="-bottom-16 -left-24 h-40 w-40 opacity-45 sm:-left-32 sm:h-48 sm:w-48" />
             <FloralDecoration asset="celebration-sparkle" layer="background" className="-right-8 -top-8 h-24 w-24 opacity-55" />
@@ -286,7 +289,7 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
                 const iconClass = gift.kind === "bank" ? "bg-primary-soft text-primary" : "bg-secondary-container text-secondary";
 
                 return (
-                  <a key={gift.title} href={gift.href} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
+                  <div key={gift.title} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
                     <span className="flex items-center gap-4">
                       <span className={`flex size-12 items-center justify-center rounded-full ${iconClass}`}><GiftIcon /></span>
                       <span>
@@ -294,8 +297,7 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
                         <small className="block text-muted">{gift.description}</small>
                       </span>
                     </span>
-                    <span className="text-2xl text-outline">›</span>
-                  </a>
+                  </div>
                 );
               })}
             </div>
