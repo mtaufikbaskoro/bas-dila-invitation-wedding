@@ -51,6 +51,12 @@ export const wedding = {
     intro: "Dengan penuh rasa syukur dan memohon ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.",
     profilesLabel: "Profil mempelai",
   },
+  surahPage: {
+    eyebrow: "Firman Allah SWT",
+    reference: "Ar-Rum: 21",
+    arabic: "وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ",
+    translation: "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.",
+  },
   events: [
     { title: "Akad Nikah", subtitle: "Upacara Suci", time: "08:00 WIB - 10:00 WIB", place: "Masjid Raya Kebayoran", address: "Jl. Pangeran Antasari No. 10, Jakarta Selatan", mapUrl: "https://maps.google.com" },
     { title: "Resepsi", subtitle: "Perayaan & Ramah Tamah", time: "11:00 WIB - Selesai", place: "The Glasshouse, Dharmawangsa", address: "Jl. Brawijaya Raya No. 26, Jakarta Selatan", mapUrl: "https://maps.google.com" },
@@ -115,11 +121,3 @@ export const wedding = {
 
 export const weddingImages = wedding.images;
 export const coupleProfiles = wedding.couple.profiles;
-
-export const navItems = [
-  { href: "#mempelai", label: "Mempelai", icon: "couple" },
-  { href: "#cerita", label: "Cerita", icon: "story" },
-  { href: "#acara", label: "Acara", icon: "event" },
-  { href: "#galeri", label: "Galeri", icon: "gallery" },
-  { href: "#rsvp", label: "RSVP", icon: "mail" },
-] as const;

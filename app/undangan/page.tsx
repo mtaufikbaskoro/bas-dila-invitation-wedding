@@ -81,6 +81,28 @@ export default async function UndanganPage() {
           </div>
         </section>
 
+        <section aria-labelledby="ayat-title" className="relative mx-auto max-w-4xl overflow-hidden px-6 py-14 sm:px-10 sm:py-20">
+          <Reveal>
+            <div className="relative z-10 mx-auto max-w-3xl border-y border-outline-variant/70 bg-surface-low px-6 py-10 text-center shadow-lg shadow-primary/10 backdrop-blur-sm sm:px-12 sm:py-14">
+              <FloralDecoration asset="corner-floral" layer="background" className="-left-10 -top-8 h-32 w-32 rotate-180 opacity-35 sm:-left-14 sm:-top-10 sm:h-40 sm:w-40" />
+              <FloralDecoration asset="corner-floral" layer="background" className="-bottom-10 -right-10 h-32 w-32 opacity-35 sm:-bottom-12 sm:-right-14 sm:h-40 sm:w-40" />
+              <header className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-secondary">{wedding.surahPage.eyebrow}</p>
+                <h2 id="ayat-title" className="mt-2 font-serif text-3xl font-semibold text-primary sm:text-4xl">{wedding.surahPage.reference}</h2>
+              </header>
+              <p lang="ar" dir="rtl" className="relative mt-8 font-serif text-3xl leading-[2.2] text-foreground sm:mt-10 sm:text-4xl sm:leading-[2.3]">
+                {wedding.surahPage.arabic}
+              </p>
+              <div className="relative mx-auto my-7 h-10 w-56 sm:my-8 sm:w-72">
+                <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
+              </div>
+              <p className="relative mx-auto max-w-2xl text-sm leading-8 text-muted sm:text-base sm:leading-9">
+                {wedding.surahPage.translation}
+              </p>
+            </div>
+          </Reveal>
+        </section>
+
         <section id="cerita" className="relative mx-auto max-w-5xl overflow-hidden px-6 py-16 sm:px-10">
           <header className="relative z-10 mx-auto mb-20 max-w-xl text-center">
             <h1 className="font-serif text-5xl font-bold text-primary">{wedding.storyPage.title}</h1>
