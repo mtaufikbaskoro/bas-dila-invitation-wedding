@@ -286,7 +286,7 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
                 const iconClass = gift.kind === "bank" ? "bg-primary-soft text-primary" : "bg-secondary-container text-secondary";
 
                 return (
-                  <a key={gift.title} href={gift.href} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
+                  <div key={gift.title} className="flex items-center justify-between rounded-2xl bg-surface-white p-5 text-left shadow-md shadow-primary/10">
                     <span className="flex items-center gap-4">
                       <span className={`flex size-12 items-center justify-center rounded-full ${iconClass}`}><GiftIcon /></span>
                       <span>
@@ -294,8 +294,7 @@ export function InvitationShell({ gallery }: { gallery: Array<{ fileName: string
                         <small className="block text-muted">{gift.description}</small>
                       </span>
                     </span>
-                    <span className="text-2xl text-outline">›</span>
-                  </a>
+                  </div>
                 );
               })}
             </div>
