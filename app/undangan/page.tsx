@@ -6,7 +6,9 @@ import { GalleryGrid } from "@/components/gallery-grid";
 import { PageFrame } from "@/components/page-frame";
 import { Reveal } from "@/components/reveal";
 import { RsvpForm } from "@/components/rsvp-form";
+import { RsvpDoaWall } from "@/components/rsvp-doa-wall";
 import { getGalleryImages } from "@/lib/gallery";
+import { getRsvpDoaEntries } from "@/lib/rsvp-doa";
 import { wedding } from "@/lib/wedding";
 
 const eventPresentation = [
@@ -55,7 +57,7 @@ function Profile({
 export const dynamic = "force-dynamic";
 
 export default async function UndanganPage() {
-  const gallery = await getGalleryImages();
+  const [gallery, doaEntries] = await Promise.all([getGalleryImages(), getRsvpDoaEntries()]);
 
   return (
     <PageFrame pattern>
@@ -249,6 +251,8 @@ export default async function UndanganPage() {
           <div className="relative z-10">
             <RsvpForm />
           </div>
+
+          <RsvpDoaWall entries={doaEntries} />
 
           <section className="relative z-10 border-t border-outline-variant/50 pt-10 text-center">
             <FloralDecoration asset="bouquet" className="-bottom-16 -left-24 h-40 w-40 opacity-45 sm:-left-32 sm:h-48 sm:w-48" />
