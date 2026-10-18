@@ -17,37 +17,56 @@
   <style>
     .gate-leaf {
       transform-box: fill-box;
-      animation-duration: 6600ms;
       animation-timing-function: cubic-bezier(.22, 1, .36, 1);
       animation-fill-mode: both;
+      backface-visibility: hidden;
     }
     .gate-leaf-left {
-      transform-origin: right center;
-      animation-name: gate-open-left;
+      transform-origin: left center;
+      animation-name: gate-open-left, gate-leaf-fade;
+      animation-duration: 4100ms, 200ms;
+      animation-delay: 0ms, 4300ms;
+      animation-timing-function: cubic-bezier(.22, 1, .36, 1), ease-in;
     }
     .gate-leaf-right {
-      transform-origin: left center;
-      animation-name: gate-open-right;
+      transform-origin: right center;
+      animation-name: gate-open-right, gate-leaf-fade;
+      animation-duration: 4100ms, 200ms;
+      animation-delay: 0ms, 4300ms;
+      animation-timing-function: cubic-bezier(.22, 1, .36, 1), ease-in;
+    }
+    .gate-frame {
+      animation: gate-frame-open 5200ms cubic-bezier(.22, 1, .36, 1) both;
     }
     @keyframes gate-open-left {
-      0%, 14% { transform: translateX(0); opacity: 1; }
-      46%, 100% { transform: translateX(-100%); opacity: .18; }
+      0%, 14% { transform: perspective(900px) rotateY(0deg); opacity: 1; }
+      46%, 100% { transform: perspective(900px) rotateY(68deg); opacity: 1; }
     }
     @keyframes gate-open-right {
-      0%, 14% { transform: translateX(0); opacity: 1; }
-      46%, 100% { transform: translateX(100%); opacity: .18; }
+      0%, 14% { transform: perspective(900px) rotateY(0deg); opacity: 1; }
+      46%, 100% { transform: perspective(900px) rotateY(-68deg); opacity: 1; }
+    }
+    @keyframes gate-leaf-fade {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes gate-frame-open {
+      0%, 14% { opacity: 1; }
+      46%, 100% { opacity: .4; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .gate-leaf { animation: none !important; }
+      .gate-leaf, .gate-frame { animation: none !important; }
     }
   </style>
 
-  <path d="M72 1128V478C72 269 241 100 450 100s378 169 378 378v650" fill="#fff8f5" fill-opacity=".38" stroke="#c58b9d" stroke-width="8"/>
-  <path d="M104 1128V480c0-191 155-346 346-346s346 155 346 346v648" stroke="#e7cbd2" stroke-width="4"/>
-  <path d="M72 1128h756" stroke="url(#gate-metal)" stroke-width="12"/>
+  <g class="gate-frame">
+    <path d="M72 1080V478c0-209 169-378 378-378s378 169 378 378v602" fill="#fff8f5" fill-opacity=".38" stroke="#c58b9d" stroke-width="8"/>
+    <path d="M104 1080V480c0-191 155-346 346-346s346 155 346 346v600" stroke="#e7cbd2" stroke-width="4"/>
+    <path d="M72 1080h756" stroke="url(#gate-metal)" stroke-width="12"/>
+  </g>
 
   <g class="gate-leaf gate-leaf-left">
-    <path d="M132 1080V482c0-176 142-318 318-318v916H132Z" fill="url(#gate-left)" stroke="#a0376a" stroke-width="7"/>
+    <path d="M72 1080V478c0-209 169-378 378-378v980H72Z" fill="url(#gate-left)" stroke="#a0376a" stroke-width="7"/>
     <path d="M160 1052V484c0-147 119-266 266-266v834H160Z" stroke="#c58b9d" stroke-width="4"/>
     <path d="M194 1050V484c0-128 104-232 232-232v798H194Z" stroke="#e7cbd2" stroke-width="3"/>
     <path d="M216 1048V486c0-116 94-210 210-210v772" stroke="#d8a85a" stroke-opacity=".7" stroke-width="3"/>
@@ -65,7 +84,7 @@
   </g>
 
   <g class="gate-leaf gate-leaf-right">
-    <path d="M450 164c176 0 318 142 318 318v598H450V164Z" fill="url(#gate-right)" stroke="#a0376a" stroke-width="7"/>
+    <path d="M450 100c209 0 378 169 378 378v602H450V100Z" fill="url(#gate-right)" stroke="#a0376a" stroke-width="7"/>
     <path d="M450 218c147 0 266 119 266 266v568H450V218Z" stroke="#c58b9d" stroke-width="4"/>
     <path d="M450 252c128 0 232 104 232 232v566H450V252Z" stroke="#e7cbd2" stroke-width="3"/>
     <path d="M474 276c116 0 210 94 210 210v562" stroke="#d8a85a" stroke-opacity=".7" stroke-width="3"/>
@@ -82,6 +101,8 @@
     <path d="M462 490h42m-42 34h42m-42 34h42m-42 34h42" stroke="#d8a85a" stroke-opacity=".65" stroke-width="4" stroke-linecap="round"/>
   </g>
 
-  <path d="M84 1128V478C84 276 248 112 450 112s366 164 366 366v650" stroke="url(#gate-metal)" stroke-width="9"/>
-  <path d="M58 1128h784" stroke="#d8a85a" stroke-opacity=".8" stroke-width="3"/>
+  <g class="gate-frame">
+    <path d="M84 1080V478c0-202 164-366 366-366s366 164 366 366v602" stroke="url(#gate-metal)" stroke-width="9"/>
+    <path d="M58 1080h784" stroke="#d8a85a" stroke-opacity=".8" stroke-width="3"/>
+  </g>
 </svg>

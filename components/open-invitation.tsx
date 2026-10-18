@@ -11,22 +11,26 @@ import { wedding } from "@/lib/wedding";
 export function OpenInvitation({ label }: { label: string }) {
   const router = useRouter();
   const { startMusic } = useMusic();
-  const [isOpening, setIsOpening] = useState(false);
+  const [phase, setPhase] = useState<"idle" | "closing" | "revealing" | "transitioning">("idle");
   const openingRef = useRef(false);
   const navigatedRef = useRef(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRefs = useRef<number[]>([]);
   const continueButtonRef = useRef<HTMLButtonElement>(null);
+  const phaseRef = useRef(phase);
+
+  function updatePhase(nextPhase: typeof phase) {
+    phaseRef.current = nextPhase;
+    setPhase(nextPhase);
+  }
 
   useEffect(() => {
-    if (isOpening) {
+    if (phase !== "idle") {
       continueButtonRef.current?.focus();
     }
-  }, [isOpening]);
+  }, [phase]);
 
   useEffect(() => () => {
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-    }
+    timeoutRefs.current.forEach(window.clearTimeout);
   }, []);
 
   function finishOpening() {
@@ -35,10 +39,17 @@ export function OpenInvitation({ label }: { label: string }) {
     }
 
     navigatedRef.current = true;
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-    }
+    timeoutRefs.current.forEach(window.clearTimeout);
+    timeoutRefs.current = [];
     router.push("/undangan");
+  }
+
+  function beginTransition() {
+    if (navigatedRef.current || phaseRef.current === "transitioning") return;
+    timeoutRefs.current.forEach(window.clearTimeout);
+    timeoutRefs.current = [];
+    updatePhase("transitioning");
+    timeoutRefs.current.push(window.setTimeout(finishOpening, 850));
   }
 
   function handleClick() {
@@ -47,7 +58,7 @@ export function OpenInvitation({ label }: { label: string }) {
     }
 
     openingRef.current = true;
-    setIsOpening(true);
+    updatePhase("closing");
     startMusic();
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -55,7 +66,8 @@ export function OpenInvitation({ label }: { label: string }) {
       return;
     }
 
-    timeoutRef.current = window.setTimeout(finishOpening, 6600);
+    timeoutRefs.current.push(window.setTimeout(() => updatePhase("revealing"), 850));
+    timeoutRefs.current.push(window.setTimeout(beginTransition, 5200));
   }
 
   return (
@@ -63,8 +75,8 @@ export function OpenInvitation({ label }: { label: string }) {
       <button
         type="button"
         onClick={handleClick}
-        disabled={isOpening}
-        aria-busy={isOpening}
+        disabled={phase !== "idle"}
+        aria-busy={phase !== "idle"}
         className="motion-press mt-5 flex w-full items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-md shadow-primary/25 transition hover:bg-[#79164b] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary disabled:cursor-wait"
       >
         <span>{label}</span>
@@ -73,15 +85,19 @@ export function OpenInvitation({ label }: { label: string }) {
         </span>
       </button>
 
-      {isOpening && createPortal(
+      {phase !== "idle" && createPortal(
         <div
-          className="invitation-opening-backdrop fixed inset-0 z-50 flex items-center justify-center overflow-hidden px-6 py-10"
+          className={`invitation-opening-backdrop invitation-phase-${phase} fixed inset-0 z-50 flex items-center justify-center overflow-hidden px-6 py-10`}
           role="dialog"
           aria-modal="true"
           aria-labelledby="opening-title"
+          aria-busy={phase === "transitioning"}
           onKeyDown={(event) => {
             if (event.key === "Escape") {
-              finishOpening();
+              beginTransition();
+            } else if (event.key === "Tab") {
+              event.preventDefault();
+              continueButtonRef.current?.focus();
             }
           }}
         >
@@ -98,7 +114,7 @@ export function OpenInvitation({ label }: { label: string }) {
               </div>
 
               <div className="opening-stage">
-              <div className="opening-letter absolute z-[1] flex flex-col items-center justify-center border border-outline-variant/70 bg-[#fffdfa] px-4 text-center shadow-xl shadow-primary/15">
+              <div className="opening-letter absolute z-[1] flex flex-col items-center justify-center border-0 bg-transparent px-4 text-center shadow-none">
                 <span className="text-[9px] font-semibold uppercase tracking-[0.24em] text-secondary">Undangan Pernikahan</span>
                 <span className="mt-2 font-serif text-2xl font-semibold text-primary">{wedding.couple.groomName} <i className="font-light text-secondary">&amp;</i> {wedding.couple.brideName}</span>
                 <span className="mt-1 text-[10px] text-muted">{wedding.date.display}</span>
@@ -125,10 +141,11 @@ export function OpenInvitation({ label }: { label: string }) {
               <button
                 ref={continueButtonRef}
                 type="button"
-                onClick={finishOpening}
+                onClick={beginTransition}
                 className="opening-continue motion-press inline-flex min-h-11 items-center gap-2 rounded-full border border-outline-variant bg-surface-white/90 px-6 py-2 text-sm font-semibold text-primary shadow-md shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary"
+                aria-label="Lanjutkan ke undangan"
               >
-                Lanjutkan
+                {phase === "transitioning" ? "Membuka undangan" : "Lanjutkan"}
                 <ArrowRight aria-hidden="true" size={15} />
               </button>
             </div>

@@ -58,7 +58,7 @@ export default async function UndanganPage() {
 
   return (
     <PageFrame pattern>
-      <main className="relative mx-auto w-full max-w-6xl overflow-x-hidden">
+      <main className="undangan-entry relative mx-auto w-full max-w-6xl overflow-x-hidden">
         <section id="mempelai" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-16 sm:px-10 sm:py-20">
           <header className="relative z-10 mx-auto max-w-2xl text-center">
             <h1 className="font-serif text-5xl font-bold leading-tight text-primary sm:text-6xl">{wedding.couplePage.title}</h1>
