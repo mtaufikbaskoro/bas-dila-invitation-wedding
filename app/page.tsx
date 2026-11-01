@@ -4,8 +4,17 @@ import { FloralDecoration } from "@/components/floral-decoration";
 import { OpenInvitation } from "@/components/open-invitation";
 import { PageFrame } from "@/components/page-frame";
 import { wedding } from "@/lib/wedding";
+import { getBasNotes } from "@/lib/about-bas";
+import { BasEasterEgg } from "@/components/bas-easter-egg";
+import type { BasNote } from "@/lib/about-bas";
 
-export default function Home() {
+export default async function Home() {
+  let basNotes: BasNote[] = [];
+  try {
+    basNotes = await getBasNotes();
+  } catch {
+    // The invitation remains usable if the optional surprise data is unavailable.
+  }
   return (
     <PageFrame pattern>
       <main className="home-invitation-canvas relative mx-auto flex min-h-dvh w-full max-w-5xl flex-col items-center justify-center overflow-hidden px-6 py-8 sm:px-10 sm:py-12">
@@ -26,7 +35,7 @@ export default function Home() {
             <Image src={wedding.images.hero} alt={wedding.home.heroAlt} fill priority sizes="(max-width: 640px) 280px, 340px" className="relative z-10 arch-image border-4 border-surface object-cover shadow-xl shadow-primary/20" />
           </div>
           <div className="animate-hero-card relative w-full max-w-sm border-y border-outline-variant/65 bg-surface-white/85 px-6 py-5 shadow-lg shadow-primary/10 backdrop-blur-sm sm:px-8 sm:py-6">
-            <Heart aria-hidden="true" className="animate-heart-beat absolute -left-3 -top-3 fill-primary-soft text-primary-soft" size={30} />
+            <BasEasterEgg notes={basNotes} />
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary">Save the date</p>
             <p className="mt-1 font-serif text-2xl font-semibold text-foreground">{wedding.date.display}</p>
             <div className="mt-2 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.14em] text-muted sm:text-sm">
