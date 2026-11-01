@@ -476,6 +476,26 @@ textarea {
   animation: modal-in 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.bas-egg-backdrop {
+  animation: bas-egg-fade 180ms ease-out both;
+}
+
+.bas-egg-panel {
+  max-height: min(92dvh, 60rem);
+  overflow-y: auto;
+  animation: bas-egg-rise 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes bas-egg-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bas-egg-rise {
+  from { opacity: 0; transform: translateY(1.5rem) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px) scale(0.97);
