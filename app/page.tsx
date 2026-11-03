@@ -8,7 +8,17 @@ import { getBasNotes } from "@/lib/about-bas";
 import { BasEasterEgg } from "@/components/bas-easter-egg";
 import type { BasNote } from "@/lib/about-bas";
 
-export default async function Home() {
+type HomeProps = {
+  searchParams: Promise<{ to?: string | string[] }>;
+};
+
+function getGuestName(value: string | string[] | undefined) {
+  const name = Array.isArray(value) ? value[0] : value;
+  return name?.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100) || "";
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const guestName = getGuestName((await searchParams).to);
   let basNotes: BasNote[] = [];
   try {
     basNotes = await getBasNotes();
@@ -21,6 +31,7 @@ export default async function Home() {
         <FloralDecoration asset="corner-floral" layer="background" className="-left-12 top-10 h-44 w-44 rotate-180 opacity-35 sm:left-0 sm:top-8 sm:h-60 sm:w-60" />
         <FloralDecoration asset="corner-floral" layer="background" className="-right-10 bottom-10 h-48 w-48 opacity-45 sm:right-0 sm:bottom-8 sm:h-64 sm:w-64" />
         <section className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center">
+          {guestName ? <p className="animate-fade-in-up mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Kepada Yth. {guestName}</p> : null}
           <p className="animate-fade-in-up mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary sm:text-xs">
             <span aria-hidden="true" className="h-px w-8 bg-primary/40" />
             {wedding.home.eyebrow}
