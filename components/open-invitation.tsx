@@ -41,7 +41,8 @@ export function OpenInvitation({ label }: { label: string }) {
     navigatedRef.current = true;
     timeoutRefs.current.forEach(window.clearTimeout);
     timeoutRefs.current = [];
-    router.push("/undangan");
+    const guestName = new URLSearchParams(window.location.search).get("to")?.trim();
+    router.push(guestName ? `/undangan?to=${encodeURIComponent(guestName)}` : "/undangan");
   }
 
   function beginTransition() {

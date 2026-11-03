@@ -56,7 +56,17 @@ function Profile({
 
 export const dynamic = "force-dynamic";
 
-export default async function UndanganPage() {
+type UndanganPageProps = {
+  searchParams: Promise<{ to?: string | string[] }>;
+};
+
+function getGuestName(value: string | string[] | undefined) {
+  const name = Array.isArray(value) ? value[0] : value;
+  return name?.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100) || "";
+}
+
+export default async function UndanganPage({ searchParams }: UndanganPageProps) {
+  const guestName = getGuestName((await searchParams).to);
   const [gallery, doaEntries] = await Promise.all([getGalleryImages(), getRsvpDoaEntries()]);
 
   return (
@@ -64,6 +74,7 @@ export default async function UndanganPage() {
       <main className="undangan-entry relative mx-auto w-full max-w-6xl overflow-x-hidden">
         <section id="mempelai" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-16 sm:px-10 sm:py-20">
           <header className="relative z-10 mx-auto max-w-2xl text-center">
+            {guestName ? <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Kepada Yth. {guestName}</p> : null}
             <h1 className="font-serif text-5xl font-bold leading-tight text-primary sm:text-6xl">{wedding.couplePage.title}</h1>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{wedding.couplePage.intro}</p>
           </header>
