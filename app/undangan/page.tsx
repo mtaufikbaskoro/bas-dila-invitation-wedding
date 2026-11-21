@@ -11,6 +11,7 @@ import { RsvpDoaWall } from "@/components/rsvp-doa-wall";
 import { getGalleryImages } from "@/lib/gallery";
 import { getRsvpDoaEntries } from "@/lib/rsvp-doa";
 import { wedding } from "@/lib/wedding";
+import { getGuestName } from "@/lib/guest";
 
 const eventPresentation = [
   { icon: Mosque, accent: "bg-primary-container" },
@@ -58,16 +59,11 @@ function Profile({
 export const dynamic = "force-dynamic";
 
 type UndanganPageProps = {
-  searchParams: Promise<{ to?: string | string[] }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-function getGuestName(value: string | string[] | undefined) {
-  const name = Array.isArray(value) ? value[0] : value;
-  return name?.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100) || "";
-}
-
 export default async function UndanganPage({ searchParams }: UndanganPageProps) {
-  const guestName = getGuestName((await searchParams).to);
+  const guestName = getGuestName(await searchParams);
   const [gallery, doaEntries] = await Promise.all([getGalleryImages(), getRsvpDoaEntries()]);
 
   return (

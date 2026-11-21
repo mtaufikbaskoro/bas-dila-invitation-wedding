@@ -6,19 +6,15 @@ import { PageFrame } from "@/components/page-frame";
 import { wedding } from "@/lib/wedding";
 import { getBasNotes } from "@/lib/about-bas";
 import { BasEasterEgg } from "@/components/bas-easter-egg";
+import { getGuestName } from "@/lib/guest";
 import type { BasNote } from "@/lib/about-bas";
 
 type HomeProps = {
-  searchParams: Promise<{ to?: string | string[] }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-function getGuestName(value: string | string[] | undefined) {
-  const name = Array.isArray(value) ? value[0] : value;
-  return name?.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100) || "";
-}
-
 export default async function Home({ searchParams }: HomeProps) {
-  const guestName = getGuestName((await searchParams).to);
+  const guestName = getGuestName(await searchParams);
   let basNotes: BasNote[] = [];
   try {
     basNotes = await getBasNotes();
@@ -53,7 +49,7 @@ export default async function Home({ searchParams }: HomeProps) {
               <MapPin aria-hidden="true" size={15} />
               <span>{wedding.location.city}, {wedding.location.country}</span>
             </div>
-            <OpenInvitation label={wedding.home.openLabel} />
+            <OpenInvitation label={wedding.home.openLabel} guestName={guestName} />
           </div>
           <div className="relative mt-4 h-10 w-64 sm:mt-5 sm:h-12 sm:w-80">
             <FloralDecoration asset="botanical-divider" layer="background" motion={false} className="inset-0 h-full w-full opacity-70" />
