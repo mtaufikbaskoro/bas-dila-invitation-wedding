@@ -7,8 +7,9 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useMusic } from "@/components/background-music";
 import { wedding } from "@/lib/wedding";
+import { getGuestNameFromQueryString } from "@/lib/guest";
 
-export function OpenInvitation({ label }: { label: string }) {
+export function OpenInvitation({ label, guestName }: { label: string; guestName?: string }) {
   const router = useRouter();
   const { startMusic } = useMusic();
   const [phase, setPhase] = useState<"idle" | "closing" | "revealing" | "transitioning">("idle");
@@ -41,8 +42,8 @@ export function OpenInvitation({ label }: { label: string }) {
     navigatedRef.current = true;
     timeoutRefs.current.forEach(window.clearTimeout);
     timeoutRefs.current = [];
-    const guestName = new URLSearchParams(window.location.search).get("to")?.trim();
-    router.push(guestName ? `/undangan?to=${encodeURIComponent(guestName)}` : "/undangan");
+    const targetGuest = guestName?.trim() || getGuestNameFromQueryString(window.location.search);
+    router.push(targetGuest ? `/undangan?to=${encodeURIComponent(targetGuest)}` : "/undangan");
   }
 
   function beginTransition() {
