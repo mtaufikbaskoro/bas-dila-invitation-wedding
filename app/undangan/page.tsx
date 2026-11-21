@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight, Clock3, Gift, Heart, MapPin, Mosque, PartyPopper, Store } from "lucide-react";
 import { FloralDecoration } from "@/components/floral-decoration";
+import { Countdown } from "@/components/countdown";
 import { EventMapLoader } from "@/components/event-map-loader";
 import { GalleryGrid } from "@/components/gallery-grid";
 import { PageFrame } from "@/components/page-frame";
@@ -174,7 +175,13 @@ export default async function UndanganPage({ searchParams }: UndanganPageProps) 
             </div>
           </div>
 
-          <div className="relative z-10 mt-20 grid gap-6 md:grid-cols-2">
+          <div className="relative z-10 mt-8">
+            <Reveal delay={80}>
+              <Countdown targetDate={wedding.date.targetDate} />
+            </Reveal>
+          </div>
+
+          <div className="relative z-10 mt-12 grid gap-6 sm:mt-16 md:grid-cols-2">
             {wedding.events.map((event, index) => {
               const { icon: Icon, accent } = eventPresentation[index];
 

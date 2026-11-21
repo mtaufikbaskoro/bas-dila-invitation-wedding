@@ -25,6 +25,8 @@ export const wedding = {
   date: {
     display: "26 Desember 2026",
     weekday: "Sabtu",
+    targetDate: "2026-12-26T09:00:00+07:00",
+    countdownTitle: "Menuju Hari Bahagia",
   },
   location: {
     city: "Simalungun",
